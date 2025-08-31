@@ -19,11 +19,12 @@
     <link rel="stylesheet" href="styles.css">
     
     <style>
-        /* Enhanced Hero Section with Beach Background */
+        /* Clean Hero Section - No Filter, No Animation */
         .hero {
             position: relative;
             min-height: 70vh;
             background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80') center/cover;
+            background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -33,41 +34,105 @@
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.8), rgba(46, 134, 171, 0.6));
-            z-index: 1;
-        }
-
         .hero-content {
             position: relative;
             z-index: 2;
             max-width: 800px;
             animation: fadeInUp 1s ease-out;
             margin: 0 auto;
-            backdrop-filter: blur(2px);
-            background: rgba(0,0,0,0.3);
-            padding: 2rem;
+            backdrop-filter: blur(1px);
+            background: rgba(0,0,0,0.5);
+            padding: 3rem;
             border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero h1 span {
             color: var(--golden-yellow);
         }
 
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
         .btn-primary {
             background: var(--golden-yellow);
             color: var(--text-dark);
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 210, 63, 0.6);
             background: var(--warm-yellow);
             color: var(--primary-orange);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--deep-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255,255,255,0.3);
         }
 
         /* Mobile optimizations for hero */
@@ -75,10 +140,11 @@
             .hero {
                 min-height: 60vh;
                 padding: 3rem 1rem;
+                background-attachment: scroll;
             }
             
             .hero-content {
-                padding: 1.5rem;
+                padding: 2rem;
             }
             
             .hero h1 {
