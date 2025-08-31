@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palm Beach Pass - Your Gateway to Paradise</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Palm Beach Pass">
+    <meta name="description" content="Discover premium attractions with Palm Beach Pass. Save 50% on 156+ experiences across Palm Beach County.">
+    
+    <!-- PWA Icons -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9InVybCgjZ3JhZGllbnQwX2xpbmVhcl82NF8yMSkiLz4KPHA+8J+MtDwvcD4KPGRBMXM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQwX2xpbmVhcl82NF8yMSIgeDE9IjAiIHkxPSIwIiB4Mj0iMzIiIHkyPSIzMiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjRkY2QjM1Ii8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzJFODZBQiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=">
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* Enhanced Hero Section with Beach Background */
+        .hero {
+            position: relative;
+            min-height: 70vh;
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 4rem 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.8), rgba(46, 134, 171, 0.6));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+            margin: 0 auto;
+            backdrop-filter: blur(2px);
+            background: rgba(0,0,0,0.3);
+            padding: 2rem;
+            border-radius: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--golden-yellow);
+        }
+
+        .btn-primary {
+            background: var(--golden-yellow);
+            color: var(--text-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--warm-yellow);
+            color: var(--primary-orange);
+        }
+
+        /* Mobile optimizations for hero */
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 60vh;
+                padding: 3rem 1rem;
+            }
+            
+            .hero-content {
+                padding: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-header">
+        <div class="nav-content">
+            <div class="logo" onclick="scrollToTop()">
+                <div class="logo-icon">🌴</div>
+                <div class="logo-text">Palm Beach <span>Pass</span></div>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#passes" class="nav-link">Passes</a>
+                <a href="#attractions" class="nav-link">Attractions</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+            </div>
+            
+            <div class="user-menu">
+                <div class="cart-icon" onclick="showCart()">
+                    🛒
+                    <span class="cart-badge" id="cartCount" style="display: none;">0</span>
+                </div>
+                <button class="btn-login" id="loginBtn" onclick="showLogin()">Sign In</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Experience <span>Palm Beach</span> Like Never Before</h1>
+            <p>One pass, endless adventures. Discover 156+ premium attractions, restaurants, and experiences across Palm Beach County.</p>
+            <div class="hero-cta">
+                <button class="btn-primary" onclick="scrollToSection('passes')">Get Your Pass</button>
+                <button class="btn-secondary" onclick="scrollToSection('attractions')">Explore Attractions</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pass Selection -->
+    <section class="pass-selection" id="passes">
+        <div class="section-header">
+            <h2>Choose Your Perfect Pass</h2>
+            <p>Select from our flexible pass options and save up to 50% on attractions</p>
+        </div>
+        
+        <div class="pass-grid" id="passGrid">
+            <!-- Passes loaded from data/passes.json -->
+        </div>
+    </section>
+
+    <!-- Attractions Section -->
+    <section class="attractions-preview" id="attractions">
+        <div class="attractions-promo">
+            <div class="promo-content">
+                <h1 class="promo-title">CHOOSE FROM 156 ATTRACTIONS</h1>
+                <h2 class="promo-subtitle">FREE WITH PALM BEACH PASS</h2>
+                <p class="promo-description">Access premium experiences, attractions, and dining. One payment for unlimited access.</p>
+                
+                <div class="promo-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">156+</span>
+                        <div class="stat-label">Attractions</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50%</span>
+                        <div class="stat-label">Average Savings</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">200K+</span>
+                        <div class="stat-label">Happy Visitors</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-section">
+            <div class="map-container" id="mapContainer">
+                <!-- Interactive Google Maps iframe -->
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d228447.75837592068!2d-80.24045274179685!3d26.628318569685075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d8d5ccb595adc1%3A0x15efc7b51fe16bde!2sPalm%20Beach%20County%2C%20FL!5e0!3m2!1sen!2sus!4v1707410421351!5m2!1sen!2sus"
+                    width="100%"
+                    height="500"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                
+                <!-- Attraction markers overlay with updated travel website colors -->
+                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;">
+                    <!-- Lion Country Safari -->
+                    <div class="map-marker" style="position: absolute; top: 35%; left: 25%; pointer-events: auto; cursor: pointer;" onclick="focusAttraction('lion')">
+                        <div style="width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3); border: 3px solid #FF6B35; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.15)'; this.nextElementSibling.style.opacity='1'; this.nextElementSibling.style.visibility='visible';" onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0'; this.nextElementSibling.style.visibility='hidden';">🦁</div>
+                        <div style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: white; padding: 0.5rem 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-size: 0.85rem; font-weight: 600; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s; pointer-events: none; color: #FF6B35;">Lion Country Safari</div>
+                    </div>
+                    
+                    <!-- Norton Museum -->
+                    <div class="map-marker" style="position: absolute; top: 40%; left: 35%; pointer-events: auto; cursor: pointer;" onclick="focusAttraction('norton')">
+                        <div style="width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 2px 8px rgba(46, 134, 171, 0.3); border: 3px solid #2E86AB; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.15)'; this.nextElementSibling.style.opacity='1'; this.nextElementSibling.style.visibility='visible';" onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0'; this.nextElementSibling.style.visibility='hidden';">🎨</div>
+                        <div style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: white; padding: 0.5rem 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-size: 0.85rem; font-weight: 600; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s; pointer-events: none; color: #2E86AB;">Norton Museum</div>
+                    </div>
+                    
+                    <!-- Palm Beach Zoo -->
+                    <div class="map-marker" style="position: absolute; top: 42%; left: 50%; pointer-events: auto; cursor: pointer;" onclick="focusAttraction('zoo')">
+                        <div style="width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 2px 8px rgba(255, 210, 63, 0.3); border: 3px solid #FFD23F; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.15)'; this.nextElementSibling.style.opacity='1'; this.nextElementSibling.style.visibility='visible';" onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0'; this.nextElementSibling.style.visibility='hidden';">🐘</div>
+                        <div style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: white; padding: 0.5rem 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-size: 0.85rem; font-weight: 600; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s; pointer-events: none; color: #FF6B35;">Palm Beach Zoo</div>
+                    </div>
+                    
+                    <!-- Rapids Water Park -->
+                    <div class="map-marker" style="position: absolute; top: 50%; left: 30%; pointer-events: auto; cursor: pointer;" onclick="focusAttraction('rapids')">
+                        <div style="width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 2px 8px rgba(46, 134, 171, 0.3); border: 3px solid #2E86AB; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.15)'; this.nextElementSibling.style.opacity='1'; this.nextElementSibling.style.visibility='visible';" onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0'; this.nextElementSibling.style.visibility='hidden';">💦</div>
+                        <div style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: white; padding: 0.5rem 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-size: 0.85rem; font-weight: 600; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s; pointer-events: none; color: #2E86AB;">Rapids Water Park</div>
+                    </div>
+                    
+                    <!-- Worth Avenue -->
+                    <div class="map-marker" style="position: absolute; top: 45%; left: 55%; pointer-events: auto; cursor: pointer;" onclick="focusAttraction('worth')">
+                        <div style="width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 2px 8px rgba(168, 230, 207, 0.3); border: 3px solid #A8E6CF; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.15)'; this.nextElementSibling.style.opacity='1'; this.nextElementSibling.style.visibility='visible';" onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0'; this.nextElementSibling.style.visibility='hidden';">💎</div>
+                        <div style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: white; padding: 0.5rem 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-size: 0.85rem; font-weight: 600; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s; pointer-events: none; color: #FF6B35;">Worth Avenue</div>
+                    </div>
+                    
+                    <!-- Science Center -->
+                    <div class="map-marker" style="position: absolute; top: 38%; left: 45%; pointer-events: auto; cursor: pointer;" onclick="focusAttraction('science')">
+                        <div style="width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 2px 8px rgba(46, 134, 171, 0.3); border: 3px solid #2E86AB; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.15)'; this.nextElementSibling.style.opacity='1'; this.nextElementSibling.style.visibility='visible';" onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0'; this.nextElementSibling.style.visibility='hidden';">🔬</div>
+                        <div style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: white; padding: 0.5rem 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-size: 0.85rem; font-weight: 600; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s; pointer-events: none; color: #2E86AB;">Science Center</div>
+                    </div>
+                    
+                    <!-- Mounts Botanical Garden -->
+                    <div class="map-marker" style="position: absolute; top: 65%; left: 35%; pointer-events: auto; cursor: pointer;" onclick="focusAttraction('morikami')">
+                        <div style="width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 2px 8px rgba(168, 230, 207, 0.3); border: 3px solid #A8E6CF; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.15)'; this.nextElementSibling.style.opacity='1'; this.nextElementSibling.style.visibility='visible';" onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0'; this.nextElementSibling.style.visibility='hidden';">🌸</div>
+                        <div style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: white; padding: 0.5rem 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-size: 0.85rem; font-weight: 600; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s; pointer-events: none; color: #A8E6CF;">Botanical Gardens</div>
+                    </div>
+                </div>
+                
+                <!-- Fallback for when maps don't load -->
+                <div id="mapFallback" class="map-fallback" style="display: none;">
+                    <div class="fallback-content">
+                        <h3>🗺️ Attractions Map</h3>
+                        <p>Interactive map loading... Meanwhile, browse our featured attractions below!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Map Filters -->
+            <div class="map-filters">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-category="all" onclick="filterAttractions('all')">All</button>
+                    <button class="filter-tab" data-category="family" onclick="filterAttractions('family')">Family</button>
+                    <button class="filter-tab" data-category="culture" onclick="filterAttractions('culture')">Culture</button>
+                    <button class="filter-tab" data-category="shopping" onclick="filterAttractions('shopping')">Shopping</button>
+                    <button class="filter-tab" data-category="nature" onclick="filterAttractions('nature')">Nature</button>
+                    <button class="filter-tab" data-category="dining" onclick="filterAttractions('dining')">Dining</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Attractions Grid -->
+        <div class="attractions-container">
+            <div class="attractions-header">
+                <h3>Featured Attractions</h3>
+                <button class="btn-view-all" onclick="viewAllAttractions()">View All 156+</button>
+            </div>
+            <div class="attractions-grid" id="attractionsGrid">
+                <!-- Attractions loaded from data/attractions.json -->
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-header">
+            <h2>How It Works</h2>
+            <p>Get started in just three easy steps</p>
+        </div>
+        
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-icon">🎫</div>
+                <div class="step-number">1</div>
+                <h3>Choose Your Pass</h3>
+                <p>Select the perfect pass duration for your Palm Beach adventure</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-icon">📱</div>
+                <div class="step-number">2</div>
+                <h3>Get Your QR Code</h3>
+                <p>Receive your digital pass instantly with QR codes for each attraction</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-icon">🏖️</div>
+                <div class="step-number">3</div>
+                <h3>Start Exploring</h3>
+                <p>Show your QR code at any attraction for instant, skip-the-line entry</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Palm Beach Pass</h3>
+                <p>Your gateway to experiencing the best of Palm Beach County. One pass, endless memories.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#passes">Buy Passes</a></li>
+                    <li><a href="#attractions">View Attractions</a></li>
+                    <li><a href="customer-account.html">My Account</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Palm Beach Pass. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('loginModal')">×</button>
+            <h2>Welcome Back</h2>
+            
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="demo@palmbeachpass.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit" class="btn-submit" id="loginSubmitBtn">
+                    <span id="loginText">Sign In</span>
+                    <span id="loginSpinner" class="loading" style="display: none;"></span>
+                </button>
+                
+                <div class="form-footer">
+                    <p>Don't have an account? <a href="#" onclick="showSignup()">Sign up</a></p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">Demo: demo@palmbeachpass.com / demo123</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Install Banner -->
+    <div class="install-banner" id="installBanner">
+        <div class="install-content">
+            <div class="install-icon">📱</div>
+            <div class="install-text">
+                <div class="install-title">Install Palm Beach Pass</div>
+                <div class="install-subtitle">Get the full app experience</div>
+            </div>
+        </div>
+        <div class="install-actions">
+            <button class="btn-install" onclick="installApp()">Install</button>
+            <button class="btn-dismiss" onclick="dismissInstall()">×</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+    
+    <script>
+        // Placeholder functions for map marker interactions
+        function focusAttraction(attraction) {
+            const messages = {
+                lion: '🦁 Lion Country Safari - Drive-through adventure with 1,000+ animals!',
+                norton: '🎨 Norton Museum - Premier art collections and exhibitions!',
+                zoo: '🐘 Palm Beach Zoo - Over 900 animals and conservation programs!',
+                rapids: '💦 Rapids Water Park - Thrilling slides and family fun!',
+                worth: '💎 Worth Avenue - Luxury shopping and dining destination!',
+                science: '🔬 Science Center - Interactive exhibits and planetarium!',
+                morikami: '🌸 Botanical Gardens - Tropical paradise and nature trails!'
+            };
+            
+            if (window.AppInstance) {
+                window.AppInstance.showToast(messages[attraction] || 'Attraction info loading...', 'info');
+            }
+        }
+    </script>
+</body>
+</html>
