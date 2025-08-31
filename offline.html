@@ -1,0 +1,479 @@
+<!-- offline.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Palm Beach Pass</title>
+    <meta name="theme-color" content="#FF6B35">
+    <style>
+        :root {
+            --primary-orange: #FF6B35;
+            --secondary-orange: #FF8C42;
+            --golden-yellow: #FFD23F;
+            --warm-yellow: #FFF3A0;
+            --deep-blue: #2E86AB;
+            --light-blue: #A8E6CF;
+            --text-dark: #2C2C2C;
+            --text-light: #666666;
+            --shadow: 0 10px 30px rgba(255, 107, 53, 0.15);
+            --shadow-lg: 0 20px 60px rgba(255, 107, 53, 0.25);
+            --success: #10B981;
+            --warning: #F59E0B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--warm-yellow) 0%, #FFFFFF 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,107,53,0.1)"/><circle cx="80" cy="30" r="1.5" fill="rgba(46,134,171,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,107,53,0.1)"/></svg>') repeat;
+            animation: float 30s infinite linear;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100px); }
+        }
+
+        .offline-container {
+            max-width: 500px;
+            width: 100%;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .offline-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--deep-blue));
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            margin: 0 auto 2rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offline-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h1 {
+            color: var(--primary-orange);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .offline-message {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .btn-retry {
+            background: var(--primary-orange);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-retry:hover {
+            background: var(--secondary-orange);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .offline-features {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            text-align: left;
+        }
+
+        .features-title {
+            color: var(--primary-orange);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: var(--warm-yellow);
+            border-radius: 15px;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .feature-item:hover {
+            background: var(--primary-orange);
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--deep-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .feature-item:hover .feature-icon {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .feature-item:hover .feature-desc {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .network-status {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary-orange);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 100;
+            transition: all 0.3s;
+        }
+
+        .network-status.online {
+            background: var(--success);
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .offline-container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .offline-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 3rem;
+            }
+
+            .offline-features {
+                padding: 1.5rem;
+            }
+
+            .feature-item {
+                padding: 0.75rem;
+            }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Network Status -->
+    <div class="network-status" id="networkStatus">📡 Offline</div>
+
+    <div class="offline-container">
+        <div class="offline-icon">🌴</div>
+        
+        <h1>You're Offline</h1>
+        <p class="offline-message">
+            Don't worry! Your digital passes are still accessible and core features work without an internet connection.
+        </p>
+        
+        <button class="btn-retry" onclick="handleRetry()" id="retryButton">
+            Try Again
+        </button>
+        
+        <div class="offline-features">
+            <h3 class="features-title">Available Offline</h3>
+            
+            <ul class="feature-list">
+                <a href="/customer-account.html" class="feature-item">
+                    <div class="feature-icon">🎫</div>
+                    <div class="feature-content">
+                        <div class="feature-name">My Digital Passes</div>
+                        <div class="feature-desc">Access your QR codes and pass information</div>
+                    </div>
+                </a>
+                
+                <a href="/" class="feature-item">
+                    <div class="feature-icon">🏠</div>
+                    <div class="feature-content">
+                        <div class="feature-name">Home Page</div>
+                        <div class="feature-desc">Browse passes and attraction info</div>
+                    </div>
+                </a>
+                
+                <a href="/checkout.html" class="feature-item">
+                    <div class="feature-icon">🛒</div>
+                    <div class="feature-content">
+                        <div class="feature-name">Saved Cart</div>
+                        <div class="feature-desc">Complete your purchase when back online</div>
+                    </div>
+                </a>
+                
+                <div class="feature-item" onclick="showOfflineInfo()">
+                    <div class="feature-icon">ℹ️</div>
+                    <div class="feature-content">
+                        <div class="feature-name">Attraction Guide</div>
+                        <div class="feature-desc">View saved attraction information</div>
+                    </div>
+                </div>
+            </ul>
+        </div>
+        
+        <p class="footer-note">
+            We'll automatically reconnect you when your internet connection is restored.
+        </p>
+    </div>
+
+    <script>
+        // Check online status
+        function updateNetworkStatus() {
+            const statusEl = document.getElementById('networkStatus');
+            const retryBtn = document.getElementById('retryButton');
+            
+            if (navigator.onLine) {
+                statusEl.textContent = '🌐 Back Online';
+                statusEl.classList.add('online');
+                retryBtn.textContent = 'Refresh Page';
+            } else {
+                statusEl.textContent = '📡 Offline';
+                statusEl.classList.remove('online');
+                retryBtn.textContent = 'Try Again';
+            }
+        }
+
+        // Handle retry button click
+        function handleRetry() {
+            const btn = document.getElementById('retryButton');
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+            btn.innerHTML = '<span style="display:inline-block;width:20px;height:20px;border:2px solid rgba(255,255,255,0.3);border-top-color:white;border-radius:50%;animation:spin 1s linear infinite;margin-right:0.5rem;"></span>Connecting...';
+            
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        }
+
+        // Listen for online/offline events
+        window.addEventListener('online', () => {
+            updateNetworkStatus();
+            showToast('Connection restored! Refreshing...', 'success');
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
+        });
+
+        window.addEventListener('offline', () => {
+            updateNetworkStatus();
+            showToast('You\'re now offline. Core features still work!', 'info');
+        });
+
+        // Initialize status
+        updateNetworkStatus();
+
+        // Show offline info
+        function showOfflineInfo() {
+            showToast('Attraction information is cached locally and available offline!', 'info');
+        }
+
+        // Toast notification function
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            const bgColors = {
+                success: '#10B981',
+                info: '#FF8C42',
+                warning: '#F59E0B',
+                error: '#FF6B35'
+            };
+            
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 2rem;
+                left: 50%;
+                transform: translateX(-50%);
+                background: ${bgColors[type] || bgColors.info};
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 50px;
+                font-weight: 500;
+                z-index: 1000;
+                animation: slideUp 0.3s ease-out;
+                max-width: 90%;
+                text-align: center;
+                box-shadow: 0 10px 30px rgba(255,107,53,0.2);
+            `;
+            
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translate(-50%, 50px)';
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        // Animate feature items on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const featureItems = document.querySelectorAll('.feature-item');
+            featureItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-30px)';
+                setTimeout(() => {
+                    item.style.transition = 'all 0.5s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                }, index * 100 + 300);
+            });
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                if (document.activeElement && document.activeElement.classList.contains('feature-item')) {
+                    document.activeElement.click();
+                } else if (document.activeElement && document.activeElement.id === 'retryButton') {
+                    handleRetry();
+                }
+            }
+        });
+
+        // Service worker messaging
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.addEventListener('message', (event) => {
+                if (event.data.type === 'CACHE_UPDATED') {
+                    showToast('Content updated! Refresh to see changes.', 'success');
+                } else if (event.data.type === 'SYNC_COMPLETE') {
+                    showToast('Data synchronized successfully!', 'success');
+                }
+            });
+        }
+
+        // Add slideUp animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideUp {
+                from {
+                    opacity: 0;
+                    transform: translate(-50%, 100px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translate(-50%, 0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        console.log('🌴 Palm Beach Pass - Offline page loaded with travel website colors');
+    </script>
+</body>
+</html>
