@@ -1,0 +1,139 @@
+{
+  "passes": [
+    {
+      "id": "1-day",
+      "name": "1 Day Pass",
+      "duration": 1,
+      "prices": { "adult": 89, "child": 69 },
+      "features": [
+        "Access to all 156+ attractions",
+        "Skip-the-line privileges", 
+        "Digital QR pass delivery",
+        "Perfect for day trips",
+        "Valid for 24 hours from activation"
+      ],
+      "badge": null,
+      "description": "Perfect for first-time visitors or quick getaways. Experience the best of Palm Beach County in a single day with unlimited access to all participating attractions.",
+      "savings": "Save up to $150 compared to individual tickets",
+      "validity": "24 hours from first use",
+      "includes": [
+        "All zoo and aquarium admissions",
+        "Museum entries", 
+        "Water park access",
+        "Botanical garden visits",
+        "Cultural site tours"
+      ]
+    },
+    {
+      "id": "3-day", 
+      "name": "3 Day Pass",
+      "duration": 3,
+      "prices": { "adult": 189, "child": 149 },
+      "features": [
+        "Access to all 156+ attractions",
+        "Skip-the-line privileges",
+        "Restaurant discounts up to 20%",
+        "Ideal for weekends",
+        "Valid for 72 hours from activation"
+      ],
+      "badge": "Most Popular",
+      "description": "Our most popular pass! Perfect for weekend getaways or extended stays. Gives you plenty of time to explore at a relaxed pace.",
+      "savings": "Save up to $400 compared to individual tickets",
+      "validity": "72 hours from first use",
+      "includes": [
+        "All attractions included",
+        "Priority entry at busy venues",
+        "Dining discounts at partner restaurants",
+        "Free parking at select locations",
+        "Digital guidebook and maps"
+      ]
+    },
+    {
+      "id": "5-day",
+      "name": "5 Day Pass", 
+      "duration": 5,
+      "prices": { "adult": 269, "child": 209 },
+      "features": [
+        "Access to all 156+ attractions",
+        "VIP experiences included",
+        "Premium dining benefits up to 25%",
+        "Perfect for vacations",
+        "Valid for 120 hours from activation"
+      ],
+      "badge": null,
+      "description": "Ideal for vacation visitors who want to explore everything Palm Beach County has to offer. Includes exclusive VIP experiences and premium benefits.",
+      "savings": "Save up to $600 compared to individual tickets",
+      "validity": "5 days from first use",
+      "includes": [
+        "All standard attractions",
+        "VIP tours and behind-the-scenes access",
+        "Premium restaurant discounts",
+        "Complimentary transportation shuttles",
+        "Exclusive member events access"
+      ]
+    },
+    {
+      "id": "7-day",
+      "name": "7 Day Pass",
+      "duration": 7, 
+      "prices": { "adult": 329, "child": 259 },
+      "features": [
+        "Unlimited attraction access",
+        "All VIP benefits included",
+        "Exclusive events access",
+        "Ultimate Palm Beach experience",
+        "Valid for 168 hours from activation"
+      ],
+      "badge": "Best Value",
+      "description": "The ultimate Palm Beach Pass experience! Perfect for extended stays or locals who want year-round access to everything the region offers.",
+      "savings": "Save up to $800 compared to individual tickets", 
+      "validity": "7 days from first use",
+      "includes": [
+        "Every attraction and experience",
+        "All VIP and behind-the-scenes tours",
+        "Maximum dining and retail discounts",
+        "Unlimited shuttle transportation",
+        "Priority booking for special events",
+        "Concierge service access"
+      ]
+    }
+  ],
+  "benefits": {
+    "global": [
+      "Instant digital delivery",
+      "Works on smartphone - no printing needed",
+      "Skip regular admission lines",
+      "24/7 customer support",
+      "Full refund if unused within 30 days"
+    ],
+    "premium": [
+      "VIP customer service hotline",
+      "Exclusive member-only events",
+      "Priority reservations",
+      "Complimentary attraction guides",
+      "Free parking at participating venues"
+    ]
+  },
+  "faq": [
+    {
+      "question": "How do I use my Palm Beach Pass?",
+      "answer": "Simply show your digital QR code at any participating attraction entrance. Your pass is activated on first use and remains valid for the duration purchased."
+    },
+    {
+      "question": "Can I share my pass with others?",
+      "answer": "Each pass is for individual use only. However, you can purchase multiple passes during checkout for your family or group."
+    },
+    {
+      "question": "What if an attraction is closed?",
+      "answer": "Attraction closures don't affect your pass validity. You can visit alternative attractions or contact our customer service for assistance."
+    },
+    {
+      "question": "Is transportation included?",
+      "answer": "Transportation shuttles are included with 5-day and 7-day passes. Other passes receive discounts on local transportation partners."
+    },
+    {
+      "question": "Can I upgrade my pass?",
+      "answer": "Yes! You can upgrade to a longer duration pass by paying the difference. Contact customer service or visit any participating attraction."
+    }
+  ]
+}

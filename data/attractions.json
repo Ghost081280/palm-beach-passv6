@@ -1,0 +1,324 @@
+{
+  "attractions": [
+    {
+      "id": "worth-avenue",
+      "name": "Worth Avenue Shopping",
+      "category": "shopping",
+      "description": "World-renowned luxury shopping destination featuring designer boutiques, art galleries, and fine dining establishments. This iconic stretch of retail paradise offers everything from haute couture to unique jewelry.",
+      "regularPrice": 0,
+      "coordinates": { "lat": 26.7006, "lng": -80.0364 },
+      "address": "Worth Avenue, Palm Beach, FL 33480",
+      "phone": "(561) 659-6909",
+      "website": "https://worth-avenue.com",
+      "hours": {
+        "monday": "10:00 AM - 6:00 PM",
+        "tuesday": "10:00 AM - 6:00 PM", 
+        "wednesday": "10:00 AM - 6:00 PM",
+        "thursday": "10:00 AM - 6:00 PM",
+        "friday": "10:00 AM - 8:00 PM",
+        "saturday": "10:00 AM - 8:00 PM",
+        "sunday": "12:00 PM - 5:00 PM"
+      },
+      "image": "🛍️",
+      "gradient": "linear-gradient(135deg, #FF4757, #E91E63)",
+      "featured": true,
+      "rating": 4.6,
+      "reviewCount": 2847,
+      "tags": ["luxury", "shopping", "dining", "art"],
+      "features": [
+        "250+ luxury shops and boutiques",
+        "World-class dining options",
+        "Art galleries and exhibitions",
+        "Valet parking available"
+      ]
+    },
+    {
+      "id": "flagler-museum",
+      "name": "Henry Morrison Flagler Museum",
+      "category": "culture",
+      "description": "Step into America's Gilded Age at this magnificent 75-room mansion built by railroad pioneer Henry Flagler. The museum showcases period furniture, art, and exhibits about Florida's development.",
+      "regularPrice": 18,
+      "coordinates": { "lat": 26.7138, "lng": -80.0484 },
+      "address": "1 Whitehall Way, Palm Beach, FL 33480",
+      "phone": "(561) 655-2833",
+      "website": "https://flaglermuseum.us",
+      "hours": {
+        "monday": "Closed",
+        "tuesday": "10:00 AM - 5:00 PM",
+        "wednesday": "10:00 AM - 5:00 PM", 
+        "thursday": "10:00 AM - 5:00 PM",
+        "friday": "10:00 AM - 5:00 PM",
+        "saturday": "10:00 AM - 5:00 PM",
+        "sunday": "12:00 PM - 5:00 PM"
+      },
+      "image": "🏛️",
+      "gradient": "linear-gradient(135deg, #E91E63, #FF69B4)",
+      "featured": true,
+      "rating": 4.8,
+      "reviewCount": 1923,
+      "tags": ["history", "architecture", "guided tours", "gilded age"],
+      "features": [
+        "Self-guided audio tours",
+        "Beautiful gardens and grounds",
+        "Historic railway car exhibit",
+        "Educational programs available"
+      ]
+    },
+    {
+      "id": "palm-beach-zoo",
+      "name": "Palm Beach Zoo & Conservation Society",
+      "category": "family",
+      "description": "Home to more than 900 animals representing 190+ species. The zoo focuses on conservation and education, featuring interactive exhibits and up-close animal encounters.",
+      "regularPrice": 24.95,
+      "coordinates": { "lat": 26.6502, "lng": -80.6749 },
+      "address": "1301 Summit Blvd, West Palm Beach, FL 33405",
+      "phone": "(561) 547-9453",
+      "website": "https://palmbeachzoo.org",
+      "hours": {
+        "monday": "9:00 AM - 5:00 PM",
+        "tuesday": "9:00 AM - 5:00 PM",
+        "wednesday": "9:00 AM - 5:00 PM",
+        "thursday": "9:00 AM - 5:00 PM",
+        "friday": "9:00 AM - 5:00 PM",
+        "saturday": "9:00 AM - 5:00 PM",
+        "sunday": "9:00 AM - 5:00 PM"
+      },
+      "image": "🦁",
+      "gradient": "linear-gradient(135deg, #FF4757, #FFB6C1)",
+      "featured": true,
+      "rating": 4.5,
+      "reviewCount": 3456,
+      "tags": ["animals", "family", "conservation", "education"],
+      "features": [
+        "900+ animals from 190+ species",
+        "Interactive feeding experiences",
+        "Conservation education programs",
+        "Children's playground and splash pad"
+      ]
+    },
+    {
+      "id": "science-center",
+      "name": "South Florida Science Center & Aquarium",
+      "category": "family",
+      "description": "Interactive science museum featuring hands-on exhibits, a digital planetarium, fresh and saltwater aquariums, and the region's only liquid nitrogen ice cream lab.",
+      "regularPrice": 19.95,
+      "coordinates": { "lat": 26.6900, "lng": -80.0725 },
+      "address": "4801 Dreher Trail N, West Palm Beach, FL 33405",
+      "phone": "(561) 832-1988",
+      "website": "https://sfsciencecenter.org",
+      "hours": {
+        "monday": "9:00 AM - 5:00 PM",
+        "tuesday": "9:00 AM - 5:00 PM",
+        "wednesday": "9:00 AM - 5:00 PM",
+        "thursday": "9:00 AM - 5:00 PM",
+        "friday": "9:00 AM - 5:00 PM",
+        "saturday": "9:00 AM - 5:00 PM",
+        "sunday": "12:00 PM - 5:00 PM"
+      },
+      "image": "🔬",
+      "gradient": "linear-gradient(135deg, #E91E63, #FF4757)",
+      "featured": true,
+      "rating": 4.7,
+      "reviewCount": 2134,
+      "tags": ["science", "planetarium", "aquarium", "interactive"],
+      "features": [
+        "Interactive science exhibits",
+        "Digital planetarium shows",
+        "Marine and freshwater aquariums",
+        "Liquid nitrogen ice cream lab"
+      ]
+    },
+    {
+      "id": "peanut-island",
+      "name": "Peanut Island Park",
+      "category": "nature",
+      "description": "Artificial island park offering pristine beaches, snorkeling, fishing, and camping. Features crystal-clear lagoons, nature trails, and historic bunker tours.",
+      "regularPrice": 15,
+      "coordinates": { "lat": 26.7755, "lng": -80.0450 },
+      "address": "1 Peanut Island, Rivera Beach, FL 33404",
+      "phone": "(561) 845-4445",
+      "website": "https://discover.pbcgov.org/parks/Locations/Peanut-Island.aspx",
+      "hours": {
+        "monday": "8:00 AM - Sunset",
+        "tuesday": "8:00 AM - Sunset",
+        "wednesday": "8:00 AM - Sunset",
+        "thursday": "8:00 AM - Sunset",
+        "friday": "8:00 AM - Sunset",
+        "saturday": "8:00 AM - Sunset",
+        "sunday": "8:00 AM - Sunset"
+      },
+      "image": "🏝️",
+      "gradient": "linear-gradient(135deg, #FF69B4, #FFB6C1)",
+      "featured": false,
+      "rating": 4.4,
+      "reviewCount": 987,
+      "tags": ["beach", "snorkeling", "camping", "fishing"],
+      "features": [
+        "Pristine beaches and clear waters",
+        "Excellent snorkeling opportunities",
+        "Camping facilities available",
+        "Historic Kennedy Bunker tours"
+      ]
+    },
+    {
+      "id": "breakers",
+      "name": "The Breakers Palm Beach",
+      "category": "dining",
+      "description": "Legendary oceanfront resort featuring world-class dining, championship golf, luxury spa services, and Italian Renaissance architecture dating back to 1896.",
+      "regularPrice": 50,
+      "coordinates": { "lat": 26.7173, "lng": -80.0395 },
+      "address": "1 S County Rd, Palm Beach, FL 33480",
+      "phone": "(561) 655-6611",
+      "website": "https://thebreakers.com",
+      "hours": {
+        "monday": "24 hours",
+        "tuesday": "24 hours",
+        "wednesday": "24 hours",
+        "thursday": "24 hours",
+        "friday": "24 hours",
+        "saturday": "24 hours",
+        "sunday": "24 hours"
+      },
+      "image": "🏨",
+      "gradient": "linear-gradient(135deg, #FF4757, #E91E63)",
+      "featured": true,
+      "rating": 4.9,
+      "reviewCount": 4567,
+      "tags": ["luxury", "resort", "dining", "golf"],
+      "features": [
+        "10 exceptional dining venues",
+        "Two championship golf courses",
+        "Full-service luxury spa",
+        "Private beach access"
+      ]
+    },
+    {
+      "id": "norton-museum",
+      "name": "Norton Museum of Art",
+      "category": "culture", 
+      "description": "Premier art museum featuring American, European, Chinese, and contemporary art collections, plus rotating exhibitions and educational programs in a stunning architectural setting.",
+      "regularPrice": 18,
+      "coordinates": { "lat": 26.7000, "lng": -80.0500 },
+      "address": "1450 S Dixie Hwy, West Palm Beach, FL 33401",
+      "phone": "(561) 832-5196",
+      "website": "https://norton.org",
+      "hours": {
+        "monday": "Closed",
+        "tuesday": "Closed", 
+        "wednesday": "10:00 AM - 5:00 PM",
+        "thursday": "10:00 AM - 9:00 PM",
+        "friday": "10:00 AM - 5:00 PM",
+        "saturday": "10:00 AM - 5:00 PM",
+        "sunday": "11:00 AM - 5:00 PM"
+      },
+      "image": "🎨",
+      "gradient": "linear-gradient(135deg, #E91E63, #FF69B4)",
+      "featured": false,
+      "rating": 4.6,
+      "reviewCount": 1654,
+      "tags": ["art", "museum", "contemporary", "exhibitions"],
+      "features": [
+        "Extensive American and European art",
+        "Rotating contemporary exhibitions", 
+        "Educational workshops and talks",
+        "Beautiful sculpture gardens"
+      ]
+    },
+    {
+      "id": "lion-country-safari",
+      "name": "Lion Country Safari",
+      "category": "family",
+      "description": "Drive-through safari adventure featuring over 1,000 animals roaming freely across 320 acres. Experience Africa without leaving Florida with lions, giraffes, and more!",
+      "regularPrice": 39.95,
+      "coordinates": { "lat": 26.6700, "lng": -80.1800 },
+      "address": "2003 Lion Country Safari Rd, Loxahatchee, FL 33470",
+      "phone": "(561) 793-1084",
+      "website": "https://lioncountrysafari.com",
+      "hours": {
+        "monday": "9:30 AM - 5:00 PM",
+        "tuesday": "9:30 AM - 5:00 PM",
+        "wednesday": "9:30 AM - 5:00 PM", 
+        "thursday": "9:30 AM - 5:00 PM",
+        "friday": "9:30 AM - 5:00 PM",
+        "saturday": "9:30 AM - 5:30 PM",
+        "sunday": "9:30 AM - 5:30 PM"
+      },
+      "image": "🦁",
+      "gradient": "linear-gradient(135deg, #FF4757, #FFB6C1)",
+      "featured": true,
+      "rating": 4.8,
+      "reviewCount": 5432,
+      "tags": ["safari", "drive-through", "lions", "adventure"],
+      "features": [
+        "4-mile drive-through safari",
+        "1,000+ exotic animals",
+        "Walk-through amusement park",
+        "Educational presentations"
+      ]
+    },
+    {
+      "id": "mounts-botanical-garden",
+      "name": "Mounts Botanical Garden",
+      "category": "nature",
+      "description": "Tropical paradise featuring the largest botanical garden in Palm Beach County with rare plants, peaceful walking trails, and educational programs.",
+      "regularPrice": 10,
+      "coordinates": { "lat": 26.6400, "lng": -80.0900 },
+      "address": "531 N Military Trail, West Palm Beach, FL 33415",
+      "phone": "(561) 233-1757",
+      "website": "https://mounts.org",
+      "hours": {
+        "monday": "8:00 AM - 5:00 PM",
+        "tuesday": "8:00 AM - 5:00 PM",
+        "wednesday": "8:00 AM - 5:00 PM",
+        "thursday": "8:00 AM - 5:00 PM",
+        "friday": "8:00 AM - 5:00 PM",
+        "saturday": "8:00 AM - 5:00 PM",
+        "sunday": "8:00 AM - 5:00 PM"
+      },
+      "image": "🌺",
+      "gradient": "linear-gradient(135deg, #FFB6C1, #FF69B4)",
+      "featured": false,
+      "rating": 4.3,
+      "reviewCount": 876,
+      "tags": ["gardens", "plants", "nature", "peaceful"],
+      "features": [
+        "14 acres of themed gardens",
+        "Rare and exotic plants",
+        "Educational workshops",
+        "Peaceful walking trails"
+      ]
+    },
+    {
+      "id": "rapids-water-park",
+      "name": "Rapids Water Park",
+      "category": "family",
+      "description": "South Florida's premier water park featuring thrilling slides, lazy river, wave pool, and family-friendly attractions. Cool off and have fun for all ages!",
+      "regularPrice": 34.99,
+      "coordinates": { "lat": 26.6300, "lng": -80.1200 },
+      "address": "6566 N Military Trail, West Palm Beach, FL 33407",
+      "phone": "(561) 842-8756",
+      "website": "https://rapidswaterpark.com",
+      "hours": {
+        "monday": "Closed",
+        "tuesday": "Closed",
+        "wednesday": "10:00 AM - 5:00 PM",
+        "thursday": "10:00 AM - 5:00 PM", 
+        "friday": "10:00 AM - 6:00 PM",
+        "saturday": "10:00 AM - 6:00 PM",
+        "sunday": "10:00 AM - 6:00 PM"
+      },
+      "image": "💦",
+      "gradient": "linear-gradient(135deg, #E91E63, #FF4757)",
+      "featured": true,
+      "rating": 4.5,
+      "reviewCount": 3210,
+      "tags": ["water park", "slides", "family", "summer"],
+      "features": [
+        "42-foot tall Big Thunder water slide",
+        "Multi-level play structure",
+        "Lazy river and wave pool",
+        "Toddler play area"
+      ]
+    }
+  ]
+}
