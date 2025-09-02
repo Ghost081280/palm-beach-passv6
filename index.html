@@ -217,13 +217,16 @@
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('./image/floridadesktop.svg') center/cover no-repeat;
             background-attachment: fixed;
             color: var(--white);
-            padding: 6rem 2rem 4rem;
+            padding: 8rem 2rem 6rem;
             text-align: center;
             overflow: hidden;
-            min-height: 85vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 100%;
+            background-size: cover;
+            background-position: center center;
         }
 
         .florida-hero::before {
@@ -233,7 +236,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0,0,0,0.3);
             z-index: 1;
         }
 
@@ -693,8 +696,10 @@
             .florida-hero {
                 background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('./image/floridamobile.svg') center/cover no-repeat;
                 background-attachment: scroll;
-                min-height: 75vh;
-                padding: 4rem 1rem 3rem;
+                min-height: 100vh;
+                padding: 6rem 1rem 4rem;
+                background-size: cover;
+                background-position: center center;
             }
 
             .florida-hero h1 {
@@ -749,8 +754,10 @@
             .florida-hero {
                 background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('./image/floridamobile.svg') center/cover no-repeat;
                 background-attachment: scroll;
-                padding: 4rem 1rem 3rem;
-                min-height: 65vh;
+                padding: 5rem 1rem 4rem;
+                min-height: 100vh;
+                background-size: cover;
+                background-position: center center;
             }
 
             .florida-hero h1 {
