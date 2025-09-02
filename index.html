@@ -24,7 +24,8 @@
         .florida-hero {
             position: relative;
             min-height: 85vh;
-            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--deep-blue) 50%, var(--golden-yellow) 100%);
+            background: url('./image/floridadesktop.svg') center/cover;
+            background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -41,8 +42,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="30" r="1.5" fill="white" opacity="0.1"/><circle cx="40" cy="70" r="1" fill="white" opacity="0.1"/><circle cx="60" cy="50" r="1.5" fill="white" opacity="0.05"/></svg>') repeat;
-            animation: float 30s infinite linear;
+            background: rgba(0,0,0,0.3);
+            z-index: 1;
         }
 
         .florida-hero-content {
@@ -51,6 +52,11 @@
             max-width: 900px;
             animation: fadeInUp 1s ease-out;
             margin: 0 auto;
+            backdrop-filter: blur(1px);
+            background: rgba(0,0,0,0.4);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
         }
 
         .florida-hero h1 {
@@ -58,12 +64,12 @@
             font-weight: 700;
             margin-bottom: 1rem;
             line-height: 1.1;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
         }
 
         .florida-hero h1 .florida-text {
             color: var(--golden-yellow);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
         }
 
         .florida-hero .hero-subtitle {
@@ -71,7 +77,7 @@
             margin-bottom: 2rem;
             opacity: 0.95;
             line-height: 1.6;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
             font-weight: 500;
         }
 
@@ -467,6 +473,17 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .florida-hero {
+                background: url('./image/floridamobile.svg') center/cover;
+                background-attachment: scroll;
+                min-height: 75vh;
+                padding: 3rem 1rem 2rem;
+            }
+
+            .florida-hero-content {
+                padding: 2rem 1.5rem;
+            }
+
             .florida-hero h1 {
                 font-size: 2.8rem;
             }
@@ -508,8 +525,21 @@
         }
 
         @media (max-width: 480px) {
+            .florida-hero {
+                min-height: 65vh;
+                padding: 2rem 1rem;
+            }
+
+            .florida-hero-content {
+                padding: 1.5rem;
+            }
+
             .florida-hero h1 {
                 font-size: 2.2rem;
+            }
+
+            .florida-hero .hero-subtitle {
+                font-size: 1.1rem;
             }
 
             .city-image {
@@ -521,9 +551,37 @@
                 padding: 1.5rem;
             }
         }
+
+        /* Fade in animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Preload images for better performance */
+        .preload-images {
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
+    <!-- Preload images for better performance -->
+    <div class="preload-images">
+        <img src="./image/floridadesktop.svg" alt="Florida Desktop">
+        <img src="./image/floridamobile.svg" alt="Florida Mobile">
+    </div>
+
     <!-- Navigation -->
     <nav class="nav-header">
         <div class="nav-content">
@@ -1002,34 +1060,7 @@
             });
         });
 
-        // Add floating animation to hero background
-        let animationId;
-        function startFloatingAnimation() {
-            const hero = document.querySelector('.florida-hero::before');
-            if (!hero) return;
-            
-            let position = 0;
-            function animate() {
-                position += 0.5;
-                if (position >= 100) position = 0;
-                animationId = requestAnimationFrame(animate);
-            }
-            animate();
-        }
-
-        // Handle page visibility for performance
-        document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'hidden') {
-                if (animationId) cancelAnimationFrame(animationId);
-            } else {
-                startFloatingAnimation();
-            }
-        });
-
-        // Initialize animations
-        startFloatingAnimation();
-
-        console.log('🌴 Florida Pass - Multi-city landing page loaded!');
+        console.log('🌴 Florida Pass - Multi-city landing page loaded with custom hero images!');
     </script>
 </body>
 </html>
