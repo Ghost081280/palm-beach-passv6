@@ -49,9 +49,9 @@
 
         /* Navigation */
         .nav-header {
-            background: rgba(27, 77, 62, 0.9);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(27, 77, 62, 0);
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
             color: var(--white);
             position: fixed;
             top: 0;
@@ -59,7 +59,7 @@
             right: 0;
             z-index: 1000;
             padding: 1rem 0;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            box-shadow: none;
             transition: all 0.3s ease;
         }
 
@@ -247,7 +247,7 @@
             z-index: 1;
         }
 
-        /* Add a more solid navigation on scroll */
+        /* Add a solid navigation on scroll */
         .nav-header.scrolled {
             background: rgba(27, 77, 62, 0.95);
             backdrop-filter: blur(15px);
@@ -1363,7 +1363,7 @@
         // Add scroll effect to navigation
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('.nav-header');
-            if (window.scrollY > 100) {
+            if (window.scrollY > 50) {
                 nav.classList.add('scrolled');
             } else {
                 nav.classList.remove('scrolled');
