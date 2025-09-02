@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Palm Beach Pass - Your Gateway to Paradise</title>
+    <title>Florida Pass - Your Gateway to the Sunshine State</title>
     
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#FF6B35">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Palm Beach Pass">
-    <meta name="description" content="Discover premium attractions with Palm Beach Pass. Save 50% on 156+ experiences across Palm Beach County.">
+    <meta name="apple-mobile-web-app-title" content="Florida Pass">
+    <meta name="description" content="Discover premium attractions across Florida with Florida Pass. Save 50% on experiences in Orlando, Miami, Tampa, and more.">
     
     <!-- PWA Icons -->
     <link rel="manifest" href="manifest.json">
@@ -19,38 +19,354 @@
     <link rel="stylesheet" href="styles.css">
     
     <style>
-        /* Clean Hero Section - No Filter, No Animation */
-        .hero {
+        /* Additional styles for the new Florida Pass landing page */
+        
+        .florida-hero {
             position: relative;
-            min-height: 70vh;
-            background: url('./image/dummy.svg') center/cover;
-            background-attachment: fixed;
+            min-height: 85vh;
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--deep-blue) 50%, var(--golden-yellow) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
-            padding: 4rem 2rem;
+            padding: 4rem 2rem 2rem;
             overflow: hidden;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            animation: fadeInUp 1s ease-out;
-            margin: 0 auto;
-            backdrop-filter: blur(1px);
-            background: rgba(0,0,0,0.5);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        .florida-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="30" r="1.5" fill="white" opacity="0.1"/><circle cx="40" cy="70" r="1" fill="white" opacity="0.1"/><circle cx="60" cy="50" r="1.5" fill="white" opacity="0.05"/></svg>') repeat;
+            animation: float 30s infinite linear;
         }
 
-        @keyframes fadeInUp {
+        .florida-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+            margin: 0 auto;
+        }
+
+        .florida-hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .florida-hero h1 .florida-text {
+            color: var(--golden-yellow);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .florida-hero .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            font-weight: 500;
+        }
+
+        .city-selector-section {
+            background: white;
+            padding: 4rem 2rem;
+            margin-top: -2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .city-selector-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .selector-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .selector-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-orange);
+        }
+
+        .selector-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            justify-items: center;
+        }
+
+        .city-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            border: 3px solid transparent;
+            width: 100%;
+            max-width: 400px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .city-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .city-card.available {
+            border-color: var(--primary-orange);
+        }
+
+        .city-card.available:hover {
+            border-color: var(--secondary-orange);
+            background: linear-gradient(135deg, rgba(255,107,53,0.05), rgba(255,210,63,0.05));
+        }
+
+        .city-card.coming-soon {
+            opacity: 0.75;
+            cursor: not-allowed;
+        }
+
+        .city-card.coming-soon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(1px);
+            pointer-events: none;
+        }
+
+        .city-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+
+        .city-status.available {
+            background: var(--deep-blue);
+            color: white;
+        }
+
+        .city-status.coming-soon {
+            background: var(--warning);
+            color: white;
+        }
+
+        .city-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--deep-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            position: relative;
+        }
+
+        .city-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .city-info {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .city-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .city-region {
+            color: var(--primary-orange);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .city-description {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .city-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--warm-yellow);
+            border-radius: 15px;
+        }
+
+        .city-stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-orange);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 0.25rem;
+        }
+
+        .btn-explore {
+            width: 100%;
+            background: var(--primary-orange);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-explore:hover {
+            background: var(--secondary-orange);
+            transform: translateY(-2px);
+            text-decoration: none;
+            color: white;
+        }
+
+        .btn-explore.disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-explore.disabled:hover {
+            background: #ccc;
+            transform: none;
+        }
+
+        .coming-soon-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255,255,255,0.95);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            color: var(--primary-orange);
+            font-size: 1.1rem;
+            z-index: 20;
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--primary-orange);
+            letter-spacing: 0.5px;
+        }
+
+        .language-selector {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            border-radius: 50px;
+            padding: 0.5rem;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .language-dropdown {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .language-dropdown:hover {
+            background: var(--warm-yellow);
+        }
+
+        .language-globe {
+            font-size: 1.2rem;
+        }
+
+        .language-text {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .language-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow-lg);
+            padding: 0.5rem;
+            min-width: 150px;
+            display: none;
+            z-index: 100;
+        }
+
+        .language-menu.active {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(-10px);
             }
             to {
                 opacity: 1;
@@ -58,120 +374,151 @@
             }
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.1;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .hero h1 span {
-            color: var(--golden-yellow);
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            line-height: 1.6;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-
-        .hero-cta {
+        .language-option {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
             align-items: center;
-        }
-
-        .btn-primary {
-            background: var(--golden-yellow);
-            color: var(--text-dark);
-            border: none;
-            padding: 1rem 3rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            color: var(--text-dark);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 210, 63, 0.6);
+        .language-option:hover {
             background: var(--warm-yellow);
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .language-option.active {
+            background: var(--primary-orange);
+            color: white;
+        }
+
+        .language-flag {
+            font-size: 1.1rem;
+        }
+
+        .language-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .features-preview {
+            background: var(--cream-white);
+            padding: 5rem 2rem;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .features-header {
+            margin-bottom: 3rem;
+        }
+
+        .features-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
             color: var(--primary-orange);
         }
 
-        .btn-secondary {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: 2px solid white;
-            padding: 1rem 3rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
         }
 
-        .btn-secondary:hover {
+        .feature-card {
             background: white;
-            color: var(--deep-blue);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255,255,255,0.3);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
         }
 
-        /* Mobile optimizations for hero */
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--deep-blue);
+        }
+
+        .feature-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .hero {
-                min-height: 60vh;
-                padding: 3rem 1rem;
-                background-attachment: scroll;
-                background-image: url('./image/mobdummy.svg');
-            }
-            
-            .hero-content {
-                padding: 2rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
+            .florida-hero h1 {
+                font-size: 2.8rem;
             }
 
-            .hero p {
-                font-size: 1.1rem;
+            .florida-hero .hero-subtitle {
+                font-size: 1.2rem;
             }
 
-            .hero-cta {
-                flex-direction: column;
-                align-items: center;
+            .selector-header h2 {
+                font-size: 2rem;
+            }
+
+            .cities-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .language-selector {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 1rem 0;
+                align-self: flex-end;
+            }
+
+            .nav-content {
+                flex-wrap: wrap;
                 gap: 1rem;
             }
 
-            .btn-primary,
-            .btn-secondary {
-                width: 100%;
-                max-width: 280px;
+            .city-stats {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
+            .florida-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .city-image {
+                height: 150px;
+                font-size: 3rem;
+            }
+
+            .city-info {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -180,165 +527,280 @@
     <!-- Navigation -->
     <nav class="nav-header">
         <div class="nav-content">
-            <div class="logo" onclick="scrollToTop()">
+            <div class="logo">
                 <div class="logo-icon">🌴</div>
-                <div class="logo-text">Palm Beach <span>Pass</span></div>
+                <div class="logo-text">Florida <span>Pass</span></div>
             </div>
             
             <div class="nav-links">
-                <a href="#passes" class="nav-link">Passes</a>
-                <a href="#attractions" class="nav-link">Attractions</a>
+                <a href="#cities" class="nav-link">Cities</a>
+                <a href="#features" class="nav-link">Features</a>
                 <a href="#how-it-works" class="nav-link">How It Works</a>
             </div>
             
             <div class="user-menu">
-                <div class="cart-icon" onclick="showCart()">
-                    🛒
-                    <span class="cart-badge" id="cartCount" style="display: none;">0</span>
+                <button class="btn-login" onclick="showComingSoonAlert()">Sign In</button>
+            </div>
+        </div>
+        
+        <!-- Language Selector -->
+        <div class="language-selector">
+            <div class="language-dropdown" onclick="toggleLanguageMenu()">
+                <span class="language-globe">🌐</span>
+                <span class="language-text" id="currentLanguage">English</span>
+                <span style="font-size: 0.8rem; margin-left: 0.25rem;">▼</span>
+            </div>
+            
+            <div class="language-menu" id="languageMenu">
+                <div class="language-option active" onclick="selectLanguage('en', 'English', '🇺🇸')">
+                    <span class="language-flag">🇺🇸</span>
+                    <span class="language-name">English</span>
                 </div>
-                <button class="btn-login" id="loginBtn" onclick="showLogin()">Sign In</button>
+                <div class="language-option" onclick="selectLanguage('es', 'Español', '🇪🇸')">
+                    <span class="language-flag">🇪🇸</span>
+                    <span class="language-name">Español</span>
+                </div>
+                <div class="language-option" onclick="selectLanguage('fr', 'Français', '🇫🇷')">
+                    <span class="language-flag">🇫🇷</span>
+                    <span class="language-name">Français</span>
+                </div>
+                <div class="language-option" onclick="selectLanguage('pt', 'Português', '🇧🇷')">
+                    <span class="language-flag">🇧🇷</span>
+                    <span class="language-name">Português</span>
+                </div>
+                <div class="language-option" onclick="selectLanguage('de', 'Deutsch', '🇩🇪')">
+                    <span class="language-flag">🇩🇪</span>
+                    <span class="language-name">Deutsch</span>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Experience <span>Palm Beach</span> Like Never Before</h1>
-            <p>One pass, endless adventures. Discover 156+ premium attractions, restaurants, and experiences across Palm Beach County.</p>
-            <div class="hero-cta">
-                <button class="btn-primary" onclick="scrollToSection('passes')">Get Your Pass</button>
-                <button class="btn-secondary" onclick="scrollToSection('attractions')">Explore Attractions</button>
-            </div>
+    <section class="florida-hero">
+        <div class="florida-hero-content">
+            <h1>Experience <span class="florida-text">Florida</span> Like Never Before</h1>
+            <p class="hero-subtitle">One pass, unlimited adventures across the Sunshine State. Discover premium attractions, dining, and experiences from Miami to Orlando and everywhere in between.</p>
         </div>
     </section>
 
-    <!-- Pass Selection -->
-    <section class="pass-selection" id="passes">
-        <div class="section-header">
-            <h2>Choose Your Perfect Pass</h2>
-            <p>Select from our flexible pass options and save up to 50% on attractions</p>
-        </div>
-        
-        <div class="pass-grid" id="passGrid">
-            <!-- Passes loaded from data/passes.json -->
-        </div>
-    </section>
-
-    <!-- Attractions Section -->
-    <section class="attractions-preview" id="attractions">
-        <div class="attractions-promo">
-            <div class="promo-content">
-                <h1 class="promo-title">CHOOSE FROM 156 ATTRACTIONS</h1>
-                <h2 class="promo-subtitle">FREE WITH PALM BEACH PASS</h2>
-                <p class="promo-description">Access premium experiences, attractions, and dining. One payment for unlimited access.</p>
-                
-                <div class="promo-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">156+</span>
-                        <div class="stat-label">Attractions</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">50%</span>
-                        <div class="stat-label">Average Savings</div>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">200K+</span>
-                        <div class="stat-label">Happy Visitors</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Map Section -->
-        <div class="map-section">
-            <div class="map-container" id="mapContainer">
-                <!-- Interactive Google Maps iframe -->
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d228447.75837592068!2d-80.24045274179685!3d26.628318569685075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d8d5ccb595adc1%3A0x15efc7b51fe16bde!2sPalm%20Beach%20County%2C%20FL!5e0!3m2!1sen!2sus!4v1707410421351!5m2!1sen!2sus"
-                    width="100%"
-                    height="500"
-                    style="border:0;"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-                
-                <!-- Attraction markers overlay with updated travel website colors -->
-                <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;">
-                    <!-- Lion Country Safari -->
-                    <div class="map-marker" style="position: absolute; top: 35%; left: 25%; pointer-events: auto; cursor: pointer;" onclick="focusAttraction('lion')">
-                        <div style="width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3); border: 3px solid #FF6B35; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.15)'; this.nextElementSibling.style.opacity='1'; this.nextElementSibling.style.visibility='visible';" onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0'; this.nextElementSibling.style.visibility='hidden';">🦁</div>
-                        <div style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: white; padding: 0.5rem 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-size: 0.85rem; font-weight: 600; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s; pointer-events: none; color: #FF6B35;">Lion Country Safari</div>
-                    </div>
-                    
-                    <!-- Norton Museum -->
-                    <div class="map-marker" style="position: absolute; top: 40%; left: 35%; pointer-events: auto; cursor: pointer;" onclick="focusAttraction('norton')">
-                        <div style="width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 2px 8px rgba(46, 134, 171, 0.3); border: 3px solid #2E86AB; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.15)'; this.nextElementSibling.style.opacity='1'; this.nextElementSibling.style.visibility='visible';" onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0'; this.nextElementSibling.style.visibility='hidden';">🎨</div>
-                        <div style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: white; padding: 0.5rem 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-size: 0.85rem; font-weight: 600; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s; pointer-events: none; color: #2E86AB;">Norton Museum</div>
-                    </div>
-                    
-                    <!-- Palm Beach Zoo -->
-                    <div class="map-marker" style="position: absolute; top: 42%; left: 50%; pointer-events: auto; cursor: pointer;" onclick="focusAttraction('zoo')">
-                        <div style="width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 2px 8px rgba(255, 210, 63, 0.3); border: 3px solid #FFD23F; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.15)'; this.nextElementSibling.style.opacity='1'; this.nextElementSibling.style.visibility='visible';" onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0'; this.nextElementSibling.style.visibility='hidden';">🐘</div>
-                        <div style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: white; padding: 0.5rem 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-size: 0.85rem; font-weight: 600; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s; pointer-events: none; color: #FF6B35;">Palm Beach Zoo</div>
-                    </div>
-                    
-                    <!-- Rapids Water Park -->
-                    <div class="map-marker" style="position: absolute; top: 50%; left: 30%; pointer-events: auto; cursor: pointer;" onclick="focusAttraction('rapids')">
-                        <div style="width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 2px 8px rgba(46, 134, 171, 0.3); border: 3px solid #2E86AB; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.15)'; this.nextElementSibling.style.opacity='1'; this.nextElementSibling.style.visibility='visible';" onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0'; this.nextElementSibling.style.visibility='hidden';">💦</div>
-                        <div style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: white; padding: 0.5rem 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-size: 0.85rem; font-weight: 600; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s; pointer-events: none; color: #2E86AB;">Rapids Water Park</div>
-                    </div>
-                    
-                    <!-- Worth Avenue -->
-                    <div class="map-marker" style="position: absolute; top: 45%; left: 55%; pointer-events: auto; cursor: pointer;" onclick="focusAttraction('worth')">
-                        <div style="width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 2px 8px rgba(168, 230, 207, 0.3); border: 3px solid #A8E6CF; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.15)'; this.nextElementSibling.style.opacity='1'; this.nextElementSibling.style.visibility='visible';" onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0'; this.nextElementSibling.style.visibility='hidden';">💎</div>
-                        <div style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: white; padding: 0.5rem 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-size: 0.85rem; font-weight: 600; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s; pointer-events: none; color: #FF6B35;">Worth Avenue</div>
-                    </div>
-                    
-                    <!-- Science Center -->
-                    <div class="map-marker" style="position: absolute; top: 38%; left: 45%; pointer-events: auto; cursor: pointer;" onclick="focusAttraction('science')">
-                        <div style="width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 2px 8px rgba(46, 134, 171, 0.3); border: 3px solid #2E86AB; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.15)'; this.nextElementSibling.style.opacity='1'; this.nextElementSibling.style.visibility='visible';" onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0'; this.nextElementSibling.style.visibility='hidden';">🔬</div>
-                        <div style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: white; padding: 0.5rem 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-size: 0.85rem; font-weight: 600; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s; pointer-events: none; color: #2E86AB;">Science Center</div>
-                    </div>
-                    
-                    <!-- Mounts Botanical Garden -->
-                    <div class="map-marker" style="position: absolute; top: 65%; left: 35%; pointer-events: auto; cursor: pointer;" onclick="focusAttraction('morikami')">
-                        <div style="width: 48px; height: 48px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 2px 8px rgba(168, 230, 207, 0.3); border: 3px solid #A8E6CF; transition: all 0.3s;" onmouseover="this.style.transform='scale(1.15)'; this.nextElementSibling.style.opacity='1'; this.nextElementSibling.style.visibility='visible';" onmouseout="this.style.transform='scale(1)'; this.nextElementSibling.style.opacity='0'; this.nextElementSibling.style.visibility='hidden';">🌸</div>
-                        <div style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: white; padding: 0.5rem 1rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-size: 0.85rem; font-weight: 600; white-space: nowrap; opacity: 0; visibility: hidden; transition: all 0.3s; pointer-events: none; color: #A8E6CF;">Botanical Gardens</div>
-                    </div>
-                </div>
-                
-                <!-- Fallback for when maps don't load -->
-                <div id="mapFallback" class="map-fallback" style="display: none;">
-                    <div class="fallback-content">
-                        <h3>🗺️ Attractions Map</h3>
-                        <p>Interactive map loading... Meanwhile, browse our featured attractions below!</p>
-                    </div>
-                </div>
+    <!-- City Selector Section -->
+    <section class="city-selector-section" id="cities">
+        <div class="city-selector-container">
+            <div class="selector-header">
+                <h2>Choose Your Florida Destination</h2>
+                <p>Select your city to start exploring amazing attractions and experiences. More destinations launching soon!</p>
             </div>
             
-            <!-- Map Filters -->
-            <div class="map-filters">
-                <div class="filter-tabs">
-                    <button class="filter-tab active" data-category="all" onclick="filterAttractions('all')">All</button>
-                    <button class="filter-tab" data-category="family" onclick="filterAttractions('family')">Family</button>
-                    <button class="filter-tab" data-category="culture" onclick="filterAttractions('culture')">Culture</button>
-                    <button class="filter-tab" data-category="shopping" onclick="filterAttractions('shopping')">Shopping</button>
-                    <button class="filter-tab" data-category="nature" onclick="filterAttractions('nature')">Nature</button>
-                    <button class="filter-tab" data-category="dining" onclick="filterAttractions('dining')">Dining</button>
+            <div class="cities-grid">
+                <!-- Palm Beach County - Available -->
+                <a href="palm-beach.html" class="city-card available">
+                    <div class="city-status available">Available Now</div>
+                    <div class="city-image" style="background: linear-gradient(135deg, var(--primary-orange), var(--golden-yellow));">
+                        🏖️
+                    </div>
+                    <div class="city-info">
+                        <div class="city-name">Palm Beach County</div>
+                        <div class="city-region">South Florida</div>
+                        <p class="city-description">Luxury beaches, world-class shopping, premium dining, and exclusive attractions along Florida's Gold Coast.</p>
+                        <div class="city-stats">
+                            <div class="city-stat">
+                                <span class="stat-number">156+</span>
+                                <div class="stat-label">Attractions</div>
+                            </div>
+                            <div class="city-stat">
+                                <span class="stat-number">50%</span>
+                                <div class="stat-label">Avg Savings</div>
+                            </div>
+                            <div class="city-stat">
+                                <span class="stat-number">200K+</span>
+                                <div class="stat-label">Visitors</div>
+                            </div>
+                        </div>
+                        <div class="btn-explore">Explore Palm Beach Pass →</div>
+                    </div>
+                </a>
+
+                <!-- Orlando - Coming Soon -->
+                <div class="city-card coming-soon">
+                    <div class="city-status coming-soon">Coming Soon</div>
+                    <div class="coming-soon-badge">COMING SOON</div>
+                    <div class="city-image" style="background: linear-gradient(135deg, var(--deep-blue), var(--light-blue));">
+                        🎢
+                    </div>
+                    <div class="city-info">
+                        <div class="city-name">Orlando</div>
+                        <div class="city-region">Central Florida</div>
+                        <p class="city-description">Theme park capital with world-famous attractions, entertainment districts, and family adventures.</p>
+                        <div class="city-stats">
+                            <div class="city-stat">
+                                <span class="stat-number">200+</span>
+                                <div class="stat-label">Attractions</div>
+                            </div>
+                            <div class="city-stat">
+                                <span class="stat-number">60%</span>
+                                <div class="stat-label">Avg Savings</div>
+                            </div>
+                            <div class="city-stat">
+                                <span class="stat-number">75M+</span>
+                                <div class="stat-label">Annual Visitors</div>
+                            </div>
+                        </div>
+                        <div class="btn-explore disabled">Notify Me</div>
+                    </div>
+                </div>
+
+                <!-- Miami-Dade - Coming Soon -->
+                <div class="city-card coming-soon">
+                    <div class="city-status coming-soon">Coming Soon</div>
+                    <div class="coming-soon-badge">COMING SOON</div>
+                    <div class="city-image" style="background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));">
+                        🏙️
+                    </div>
+                    <div class="city-info">
+                        <div class="city-name">Miami-Dade</div>
+                        <div class="city-region">South Florida</div>
+                        <p class="city-description">Vibrant culture, stunning beaches, world-class nightlife, and Latin American flair in Magic City.</p>
+                        <div class="city-stats">
+                            <div class="city-stat">
+                                <span class="stat-number">120+</span>
+                                <div class="stat-label">Attractions</div>
+                            </div>
+                            <div class="city-stat">
+                                <span class="stat-number">45%</span>
+                                <div class="stat-label">Avg Savings</div>
+                            </div>
+                            <div class="city-stat">
+                                <span class="stat-number">25M+</span>
+                                <div class="stat-label">Annual Visitors</div>
+                            </div>
+                        </div>
+                        <div class="btn-explore disabled">Notify Me</div>
+                    </div>
+                </div>
+
+                <!-- Tampa Bay - Coming Soon -->
+                <div class="city-card coming-soon">
+                    <div class="city-status coming-soon">Coming Soon</div>
+                    <div class="coming-soon-badge">COMING SOON</div>
+                    <div class="city-image" style="background: linear-gradient(135deg, var(--golden-yellow), var(--warm-yellow));">
+                        ⚡
+                    </div>
+                    <div class="city-info">
+                        <div class="city-name">Tampa Bay</div>
+                        <div class="city-region">West Florida</div>
+                        <p class="city-description">Thrilling attractions, craft brewing scene, historic districts, and championship sports experiences.</p>
+                        <div class="city-stats">
+                            <div class="city-stat">
+                                <span class="stat-number">80+</span>
+                                <div class="stat-label">Attractions</div>
+                            </div>
+                            <div class="city-stat">
+                                <span class="stat-number">40%</span>
+                                <div class="stat-label">Avg Savings</div>
+                            </div>
+                            <div class="city-stat">
+                                <span class="stat-number">15M+</span>
+                                <div class="stat-label">Annual Visitors</div>
+                            </div>
+                        </div>
+                        <div class="btn-explore disabled">Notify Me</div>
+                    </div>
+                </div>
+
+                <!-- Jacksonville - Coming Soon -->
+                <div class="city-card coming-soon">
+                    <div class="city-status coming-soon">Coming Soon</div>
+                    <div class="coming-soon-badge">COMING SOON</div>
+                    <div class="city-image" style="background: linear-gradient(135deg, var(--deep-blue), var(--primary-orange));">
+                        🌊
+                    </div>
+                    <div class="city-info">
+                        <div class="city-name">Jacksonville</div>
+                        <div class="city-region">Northeast Florida</div>
+                        <p class="city-description">River city charm, beautiful beaches, historic neighborhoods, and outdoor adventures galore.</p>
+                        <div class="city-stats">
+                            <div class="city-stat">
+                                <span class="stat-number">60+</span>
+                                <div class="stat-label">Attractions</div>
+                            </div>
+                            <div class="city-stat">
+                                <span class="stat-number">35%</span>
+                                <div class="stat-label">Avg Savings</div>
+                            </div>
+                            <div class="city-stat">
+                                <span class="stat-number">8M+</span>
+                                <div class="stat-label">Annual Visitors</div>
+                            </div>
+                        </div>
+                        <div class="btn-explore disabled">Notify Me</div>
+                    </div>
+                </div>
+
+                <!-- Fort Lauderdale - Coming Soon -->
+                <div class="city-card coming-soon">
+                    <div class="city-status coming-soon">Coming Soon</div>
+                    <div class="coming-soon-badge">COMING SOON</div>
+                    <div class="city-image" style="background: linear-gradient(135deg, var(--light-blue), var(--deep-blue));">
+                        ⛵
+                    </div>
+                    <div class="city-info">
+                        <div class="city-name">Fort Lauderdale</div>
+                        <div class="city-region">South Florida</div>
+                        <p class="city-description">Yachting capital, pristine beaches, luxury shopping, and waterfront dining experiences.</p>
+                        <div class="city-stats">
+                            <div class="city-stat">
+                                <span class="stat-number">70+</span>
+                                <div class="stat-label">Attractions</div>
+                            </div>
+                            <div class="city-stat">
+                                <span class="stat-number">42%</span>
+                                <div class="stat-label">Avg Savings</div>
+                            </div>
+                            <div class="city-stat">
+                                <span class="stat-number">12M+</span>
+                                <div class="stat-label">Annual Visitors</div>
+                            </div>
+                        </div>
+                        <div class="btn-explore disabled">Notify Me</div>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Featured Attractions Grid -->
-        <div class="attractions-container">
-            <div class="attractions-header">
-                <h3>Featured Attractions</h3>
-                <button class="btn-view-all" onclick="viewAllAttractions()">View All 156+</button>
+    <!-- Features Section -->
+    <section class="features-preview" id="features">
+        <div class="features-container">
+            <div class="features-header">
+                <h2>Why Choose Florida Pass?</h2>
+                <p>The smartest way to explore the Sunshine State</p>
             </div>
-            <div class="attractions-grid" id="attractionsGrid">
-                <!-- Attractions loaded from data/attractions.json -->
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3 class="feature-title">Digital Convenience</h3>
+                    <p class="feature-description">Instant delivery, QR code entry, and mobile-first experience. No printing required.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3 class="feature-title">Massive Savings</h3>
+                    <p class="feature-description">Save up to 60% compared to individual attraction tickets. The more you explore, the more you save.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Skip the Lines</h3>
+                    <p class="feature-description">Fast-track entry at participating attractions. Spend more time enjoying, less time waiting.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🗺️</div>
+                    <h3 class="feature-title">Flexible Exploration</h3>
+                    <p class="feature-description">Visit attractions in any order, at your own pace. Valid for multiple days across all locations.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -352,21 +814,21 @@
         
         <div class="steps-grid">
             <div class="step-card">
-                <div class="step-icon">🎫</div>
+                <div class="step-icon">🏙️</div>
                 <div class="step-number">1</div>
-                <h3>Choose Your Pass</h3>
-                <p>Select the perfect pass duration for your Palm Beach adventure</p>
+                <h3>Choose Your City</h3>
+                <p>Select your Florida destination and pick the perfect pass duration for your adventure</p>
             </div>
             
             <div class="step-card">
                 <div class="step-icon">📱</div>
                 <div class="step-number">2</div>
-                <h3>Get Your QR Code</h3>
-                <p>Receive your digital pass instantly with QR codes for each attraction</p>
+                <h3>Get Your QR Codes</h3>
+                <p>Receive your digital passes instantly with QR codes for each attraction</p>
             </div>
             
             <div class="step-card">
-                <div class="step-icon">🏖️</div>
+                <div class="step-icon">🌴</div>
                 <div class="step-number">3</div>
                 <h3>Start Exploring</h3>
                 <p>Show your QR code at any attraction for instant, skip-the-line entry</p>
@@ -378,111 +840,196 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Palm Beach Pass</h3>
-                <p>Your gateway to experiencing the best of Palm Beach County. One pass, endless memories.</p>
+                <h3>Florida Pass</h3>
+                <p>Your gateway to experiencing the best of the Sunshine State. One pass, endless memories across Florida's top destinations.</p>
             </div>
             
             <div class="footer-section">
-                <h3>Quick Links</h3>
+                <h3>Destinations</h3>
                 <ul class="footer-links">
-                    <li><a href="#passes">Buy Passes</a></li>
-                    <li><a href="#attractions">View Attractions</a></li>
-                    <li><a href="customer-account.html">My Account</a></li>
-                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="palm-beach.html">Palm Beach County</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Orlando (Coming Soon)</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Miami-Dade (Coming Soon)</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Tampa Bay (Coming Soon)</a></li>
                 </ul>
             </div>
             
             <div class="footer-section">
                 <h3>Support</h3>
                 <ul class="footer-links">
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">FAQs</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Contact Us</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Terms & Conditions</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Privacy Policy</a></li>
                 </ul>
             </div>
             
             <div class="footer-section">
                 <h3>Connect</h3>
                 <ul class="footer-links">
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Facebook</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Instagram</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Twitter</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">YouTube</a></li>
                 </ul>
             </div>
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2025 Palm Beach Pass. All rights reserved.</p>
+            <p>&copy; 2025 Florida Pass. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Login Modal -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('loginModal')">×</button>
-            <h2>Welcome Back</h2>
-            
-            <form id="loginForm" onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="loginEmail" placeholder="demo@palmbeachpass.com" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
-                </div>
-                
-                <button type="submit" class="btn-submit" id="loginSubmitBtn">
-                    <span id="loginText">Sign In</span>
-                    <span id="loginSpinner" class="loading" style="display: none;"></span>
-                </button>
-                
-                <div class="form-footer">
-                    <p>Don't have an account? <a href="#" onclick="showSignup()">Sign up</a></p>
-                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">Demo: demo@palmbeachpass.com / demo123</p>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Install Banner -->
-    <div class="install-banner" id="installBanner">
-        <div class="install-content">
-            <div class="install-icon">📱</div>
-            <div class="install-text">
-                <div class="install-title">Install Palm Beach Pass</div>
-                <div class="install-subtitle">Get the full app experience</div>
-            </div>
-        </div>
-        <div class="install-actions">
-            <button class="btn-install" onclick="installApp()">Install</button>
-            <button class="btn-dismiss" onclick="dismissInstall()">×</button>
-        </div>
-    </div>
-
     <!-- Scripts -->
-    <script src="app.js"></script>
-    
     <script>
-        // Placeholder functions for map marker interactions
-        function focusAttraction(attraction) {
-            const messages = {
-                lion: '🦁 Lion Country Safari - Drive-through adventure with 1,000+ animals!',
-                norton: '🎨 Norton Museum - Premier art collections and exhibitions!',
-                zoo: '🐘 Palm Beach Zoo - Over 900 animals and conservation programs!',
-                rapids: '💦 Rapids Water Park - Thrilling slides and family fun!',
-                worth: '💎 Worth Avenue - Luxury shopping and dining destination!',
-                science: '🔬 Science Center - Interactive exhibits and planetarium!',
-                morikami: '🌸 Botanical Gardens - Tropical paradise and nature trails!'
-            };
-            
-            if (window.AppInstance) {
-                window.AppInstance.showToast(messages[attraction] || 'Attraction info loading...', 'info');
-            }
+        // Language selector functionality
+        function toggleLanguageMenu() {
+            const menu = document.getElementById('languageMenu');
+            menu.classList.toggle('active');
         }
+
+        function selectLanguage(code, name, flag) {
+            document.getElementById('currentLanguage').textContent = name;
+            
+            // Update active state
+            document.querySelectorAll('.language-option').forEach(opt => {
+                opt.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            // Close menu
+            document.getElementById('languageMenu').classList.remove('active');
+            
+            // Store language preference
+            localStorage.setItem('preferred_language', code);
+            
+            // Show toast notification
+            showToast(`Language changed to ${name} ${flag}`, 'success');
+            
+            // In a real app, this would trigger translation
+            console.log('Language changed to:', code, name);
+        }
+
+        // Close language menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const selector = document.querySelector('.language-selector');
+            const menu = document.getElementById('languageMenu');
+            
+            if (!selector.contains(e.target)) {
+                menu.classList.remove('active');
+            }
+        });
+
+        // Coming soon alert for unavailable features
+        function showComingSoonAlert() {
+            showToast('🚀 Coming Soon! We\'re working hard to bring you more amazing features.', 'info');
+        }
+
+        // Toast notification function
+        function showToast(message, type = 'info') {
+            // Remove existing toasts
+            document.querySelectorAll('.toast').forEach(toast => toast.remove());
+
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = 70;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_language');
+            if (savedLang) {
+                // Find and activate saved language
+                const langOptions = {
+                    'en': { name: 'English', flag: '🇺🇸' },
+                    'es': { name: 'Español', flag: '🇪🇸' },
+                    'fr': { name: 'Français', flag: '🇫🇷' },
+                    'pt': { name: 'Português', flag: '🇧🇷' },
+                    'de': { name: 'Deutsch', flag: '🇩🇪' }
+                };
+                
+                if (langOptions[savedLang]) {
+                    document.getElementById('currentLanguage').textContent = langOptions[savedLang].name;
+                }
+            }
+
+            // Add scroll animation to city cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Initially hide city cards for animation
+            document.querySelectorAll('.city-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease-out';
+                observer.observe(card);
+            });
+        });
+
+        // Add floating animation to hero background
+        let animationId;
+        function startFloatingAnimation() {
+            const hero = document.querySelector('.florida-hero::before');
+            if (!hero) return;
+            
+            let position = 0;
+            function animate() {
+                position += 0.5;
+                if (position >= 100) position = 0;
+                animationId = requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // Handle page visibility for performance
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden') {
+                if (animationId) cancelAnimationFrame(animationId);
+            } else {
+                startFloatingAnimation();
+            }
+        });
+
+        // Initialize animations
+        startFloatingAnimation();
+
+        console.log('🌴 Florida Pass - Multi-city landing page loaded!');
     </script>
 </body>
 </html>
