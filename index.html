@@ -6,324 +6,131 @@
     <title>Florida Pass - Your Gateway to the Sunshine State</title>
     
     <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#FF6B35">
+    <meta name="theme-color" content="#52C784">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Florida Pass">
     <meta name="description" content="Discover premium attractions across Florida with Florida Pass. Save 50% on experiences in Orlando, Miami, Tampa, and more.">
     
-    <!-- PWA Icons -->
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9InVybCgjZ3JhZGllbnQwX2xpbmVhcl82NF8yMSkiLz4KPHA+8J+MtDwvcD4KPGRBMXM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQwX2xpbmVhcl82NF8yMSIgeDE9IjAiIHkxPSIwIiB4Mj0iMzIiIHkyPSIzMiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSIjRkY2QjM1Ii8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzJFODZBQiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=">
-    
-    <link rel="stylesheet" href="styles.css">
-    
     <style>
-        /* Additional styles for the new Florida Pass landing page */
-        
-        .florida-hero {
-            position: relative;
-            min-height: 85vh;
-            background: url('./image/floridadesktop.svg') center/cover;
-            background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 4rem 2rem 2rem;
-            overflow: hidden;
+        :root {
+            /* Updated color scheme to match the Palm Beach Pass image */
+            --primary-green: #52C784;
+            --dark-green: #2E7D32;
+            --darker-green: #1B4D3E;
+            --light-green: #66BB6A;
+            --accent-green: #4CAF50;
+            --red-accent: #E53E3E;
+            --orange-accent: #FF6B35;
+            --yellow-accent: #FFD23F;
+            --white: #FFFFFF;
+            --cream: #FAFAFA;
+            --light-gray: #F7F7F7;
+            --medium-gray: #E5E5E5;
+            --dark-gray: #424242;
+            --text-dark: #2D3748;
+            --text-light: #718096;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.12);
         }
 
-        .florida-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.3);
-            z-index: 1;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .florida-hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            animation: fadeInUp 1s ease-out;
-            margin: 0 auto;
-            backdrop-filter: blur(1px);
-            background: rgba(0,0,0,0.4);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-
-        .florida-hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.1;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
-        }
-
-        .florida-hero h1 .florida-text {
-            color: var(--golden-yellow);
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
-        }
-
-        .florida-hero .hero-subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-            font-weight: 500;
-        }
-
-        .city-selector-section {
-            background: white;
-            padding: 4rem 2rem;
-            margin-top: -2rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .city-selector-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .selector-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .selector-header h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--primary-orange);
-        }
-
-        .selector-header p {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .cities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-            justify-items: center;
-        }
-
-        .city-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-            cursor: pointer;
-            position: relative;
-            border: 3px solid transparent;
-            width: 100%;
-            max-width: 400px;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .city-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .city-card.available {
-            border-color: var(--primary-orange);
-        }
-
-        .city-card.available:hover {
-            border-color: var(--secondary-orange);
-            background: linear-gradient(135deg, rgba(255,107,53,0.05), rgba(255,210,63,0.05));
-        }
-
-        .city-card.coming-soon {
-            opacity: 0.75;
-            cursor: not-allowed;
-        }
-
-        .city-card.coming-soon::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255,255,255,0.8);
-            backdrop-filter: blur(1px);
-            pointer-events: none;
-        }
-
-        .city-status {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            z-index: 10;
-        }
-
-        .city-status.available {
-            background: var(--deep-blue);
-            color: white;
-        }
-
-        .city-status.coming-soon {
-            background: var(--warning);
-            color: white;
-        }
-
-        .city-image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--primary-orange), var(--deep-blue));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-            position: relative;
-        }
-
-        .city-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.2);
-        }
-
-        .city-info {
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .city-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
             color: var(--text-dark);
+            background-color: var(--white);
         }
 
-        .city-region {
-            color: var(--primary-orange);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        /* Navigation */
+        .nav-header {
+            background: var(--darker-green);
+            color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
         }
 
-        .city-description {
-            color: var(--text-light);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .city-stats {
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
-            justify-content: space-around;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: var(--warm-yellow);
-            border-radius: 15px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
         }
 
-        .city-stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 1.5rem;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             font-weight: 700;
-            color: var(--primary-orange);
-            display: block;
+            font-size: 1.5rem;
+            color: var(--white);
+            text-decoration: none;
         }
 
-        .stat-label {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            margin-top: 0.25rem;
+        .logo-icon {
+            font-size: 2rem;
         }
 
-        .btn-explore {
-            width: 100%;
-            background: var(--primary-orange);
-            color: white;
+        .logo-text span {
+            color: var(--primary-green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            opacity: 0.9;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-green);
+            opacity: 1;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-login {
+            background: var(--red-accent);
+            color: var(--white);
             border: none;
-            padding: 1rem;
-            border-radius: 15px;
-            font-size: 1rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
         }
 
-        .btn-explore:hover {
-            background: var(--secondary-orange);
+        .btn-login:hover {
+            background: #C53030;
             transform: translateY(-2px);
-            text-decoration: none;
-            color: white;
         }
 
-        .btn-explore.disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .btn-explore.disabled:hover {
-            background: #ccc;
-            transform: none;
-        }
-
-        .coming-soon-badge {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255,255,255,0.95);
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            font-weight: 700;
-            color: var(--primary-orange);
-            font-size: 1.1rem;
-            z-index: 20;
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--primary-orange);
-            letter-spacing: 0.5px;
-        }
-
+        /* Language Selector */
         .language-selector {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            z-index: 1000;
-            background: rgba(255,255,255,0.95);
-            border-radius: 50px;
-            padding: 0.5rem;
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 0.25rem;
         }
 
         .language-dropdown {
@@ -332,36 +139,37 @@
             gap: 0.5rem;
             cursor: pointer;
             padding: 0.5rem 1rem;
-            border-radius: 50px;
+            border-radius: 15px;
             transition: all 0.3s;
             position: relative;
+            color: var(--white);
         }
 
         .language-dropdown:hover {
-            background: var(--warm-yellow);
+            background: rgba(255,255,255,0.1);
         }
 
         .language-globe {
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         .language-text {
             font-size: 0.9rem;
             font-weight: 500;
-            color: var(--text-dark);
         }
 
         .language-menu {
             position: absolute;
             top: 100%;
             right: 0;
-            background: white;
+            background: var(--white);
             border-radius: 15px;
             box-shadow: var(--shadow-lg);
             padding: 0.5rem;
             min-width: 150px;
             display: none;
             z-index: 100;
+            margin-top: 0.5rem;
         }
 
         .language-menu.active {
@@ -393,27 +201,304 @@
         }
 
         .language-option:hover {
-            background: var(--warm-yellow);
+            background: var(--cream);
             text-decoration: none;
             color: var(--text-dark);
         }
 
         .language-option.active {
-            background: var(--primary-orange);
-            color: white;
+            background: var(--primary-green);
+            color: var(--white);
         }
 
-        .language-flag {
-            font-size: 1.1rem;
+        /* Hero Section */
+        .florida-hero {
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('./image/floridadesktop.svg') center/cover no-repeat;
+            background-attachment: fixed;
+            color: var(--white);
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            overflow: hidden;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .language-name {
+        .florida-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .florida-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .florida-hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .florida-hero h1 .florida-text {
+            color: var(--yellow-accent);
+        }
+
+        .florida-hero .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* City Selector Section */
+        .city-selector-section {
+            background: var(--white);
+            padding: 4rem 2rem;
+        }
+
+        .city-selector-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .selector-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .selector-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark-green);
+        }
+
+        .selector-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            justify-items: center;
+        }
+
+        .city-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            border: 3px solid transparent;
+            width: 100%;
+            max-width: 400px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .city-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .city-card.available {
+            border-color: var(--primary-green);
+        }
+
+        .city-card.available:hover {
+            border-color: var(--light-green);
+            background: linear-gradient(135deg, rgba(82,199,132,0.05), rgba(255,210,63,0.05));
+        }
+
+        .city-card.coming-soon {
+            opacity: 0.75;
+            cursor: not-allowed;
+        }
+
+        .city-card.coming-soon::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(1px);
+            pointer-events: none;
+        }
+
+        .city-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+
+        .city-status.available {
+            background: var(--primary-green);
+            color: var(--white);
+        }
+
+        .city-status.coming-soon {
+            background: var(--orange-accent);
+            color: var(--white);
+        }
+
+        .city-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--white);
+            position: relative;
+        }
+
+        .city-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .city-info {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .city-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .city-region {
+            color: var(--primary-green);
             font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
+        .city-description {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .city-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: 15px;
+        }
+
+        .city-stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 0.25rem;
+        }
+
+        .btn-explore {
+            width: 100%;
+            background: var(--red-accent);
+            color: var(--white);
+            border: none;
+            padding: 1rem;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-explore:hover {
+            background: #C53030;
+            transform: translateY(-2px);
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .btn-explore.disabled {
+            background: var(--medium-gray);
+            cursor: not-allowed;
+            transform: none;
+            color: var(--text-light);
+        }
+
+        .btn-explore.disabled:hover {
+            background: var(--medium-gray);
+            transform: none;
+            color: var(--text-light);
+        }
+
+        .coming-soon-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255,255,255,0.95);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            color: var(--orange-accent);
+            font-size: 1.1rem;
+            z-index: 20;
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--orange-accent);
+            letter-spacing: 0.5px;
+        }
+
+        /* Features Section */
         .features-preview {
-            background: var(--cream-white);
+            background: var(--light-gray);
             padding: 5rem 2rem;
         }
 
@@ -431,7 +516,7 @@
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            color: var(--primary-orange);
+            color: var(--dark-green);
         }
 
         .features-grid {
@@ -442,7 +527,7 @@
         }
 
         .feature-card {
-            background: white;
+            background: var(--white);
             padding: 2rem;
             border-radius: 20px;
             box-shadow: var(--shadow);
@@ -463,7 +548,7 @@
             font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            color: var(--deep-blue);
+            color: var(--dark-green);
         }
 
         .feature-description {
@@ -471,17 +556,145 @@
             line-height: 1.6;
         }
 
-        /* Mobile Responsive */
+        /* How It Works */
+        .how-it-works {
+            background: var(--white);
+            padding: 5rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-green);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .steps-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .step-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--white);
+            margin: 0 auto 1.5rem;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 30px;
+            height: 30px;
+            background: var(--red-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .step-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .step-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2D3748;
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+
+        .footer-section p {
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--primary-green);
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .florida-hero {
-                background: url('./image/floridamobile.svg') center/cover;
+                background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('./image/floridamobile.svg') center/cover no-repeat;
                 background-attachment: scroll;
                 min-height: 75vh;
-                padding: 3rem 1rem 2rem;
-            }
-
-            .florida-hero-content {
-                padding: 2rem 1.5rem;
+                padding: 4rem 1rem 3rem;
             }
 
             .florida-hero h1 {
@@ -501,17 +714,20 @@
                 gap: 1.5rem;
             }
 
-            .language-selector {
-                position: relative;
-                top: auto;
-                right: auto;
-                margin: 1rem 0;
-                align-self: flex-end;
-            }
-
             .nav-content {
                 flex-wrap: wrap;
                 gap: 1rem;
+            }
+
+            .nav-links {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .user-menu {
+                order: 2;
             }
 
             .city-stats {
@@ -522,16 +738,19 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
         }
 
         @media (max-width: 480px) {
             .florida-hero {
+                background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('./image/floridamobile.svg') center/cover no-repeat;
+                background-attachment: scroll;
+                padding: 4rem 1rem 3rem;
                 min-height: 65vh;
-                padding: 2rem 1rem;
-            }
-
-            .florida-hero-content {
-                padding: 1.5rem;
             }
 
             .florida-hero h1 {
@@ -552,43 +771,48 @@
             }
         }
 
-        /* Fade in animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Toast Notification Styles */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow-lg);
+            z-index: 10000;
+            opacity: 1;
+            transform: translateX(0);
+            transition: all 0.3s ease;
         }
 
-        /* Preload images for better performance */
-        .preload-images {
-            position: absolute;
-            left: -9999px;
-            top: -9999px;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
+        .toast.success {
+            background: var(--primary-green);
+        }
+
+        .toast.info {
+            background: var(--primary-green);
+        }
+
+        .toast.warning {
+            background: var(--yellow-accent);
+            color: var(--text-dark);
+        }
+
+        .toast.error {
+            background: var(--red-accent);
         }
     </style>
 </head>
 <body>
-    <!-- Preload images for better performance -->
-    <div class="preload-images">
-        <img src="./image/floridadesktop.svg" alt="Florida Desktop">
-        <img src="./image/floridamobile.svg" alt="Florida Mobile">
-    </div>
-
     <!-- Navigation -->
     <nav class="nav-header">
         <div class="nav-content">
-            <div class="logo">
+            <a href="#" class="logo">
                 <div class="logo-icon">🌴</div>
                 <div class="logo-text">Florida <span>Pass</span></div>
-            </div>
+            </a>
             
             <div class="nav-links">
                 <a href="#cities" class="nav-link">Cities</a>
@@ -597,39 +821,39 @@
             </div>
             
             <div class="user-menu">
+                <!-- Language Selector -->
+                <div class="language-selector">
+                    <div class="language-dropdown" onclick="toggleLanguageMenu()">
+                        <span class="language-globe">🌐</span>
+                        <span class="language-text" id="currentLanguage">English</span>
+                        <span style="font-size: 0.8rem; margin-left: 0.25rem;">▼</span>
+                    </div>
+                    
+                    <div class="language-menu" id="languageMenu">
+                        <div class="language-option active" onclick="selectLanguage('en', 'English', '🇺🇸')">
+                            <span class="language-flag">🇺🇸</span>
+                            <span class="language-name">English</span>
+                        </div>
+                        <div class="language-option" onclick="selectLanguage('es', 'Español', '🇪🇸')">
+                            <span class="language-flag">🇪🇸</span>
+                            <span class="language-name">Español</span>
+                        </div>
+                        <div class="language-option" onclick="selectLanguage('fr', 'Français', '🇫🇷')">
+                            <span class="language-flag">🇫🇷</span>
+                            <span class="language-name">Français</span>
+                        </div>
+                        <div class="language-option" onclick="selectLanguage('pt', 'Português', '🇧🇷')">
+                            <span class="language-flag">🇧🇷</span>
+                            <span class="language-name">Português</span>
+                        </div>
+                        <div class="language-option" onclick="selectLanguage('de', 'Deutsch', '🇩🇪')">
+                            <span class="language-flag">🇩🇪</span>
+                            <span class="language-name">Deutsch</span>
+                        </div>
+                    </div>
+                </div>
+                
                 <button class="btn-login" onclick="showComingSoonAlert()">Sign In</button>
-            </div>
-        </div>
-        
-        <!-- Language Selector -->
-        <div class="language-selector">
-            <div class="language-dropdown" onclick="toggleLanguageMenu()">
-                <span class="language-globe">🌐</span>
-                <span class="language-text" id="currentLanguage">English</span>
-                <span style="font-size: 0.8rem; margin-left: 0.25rem;">▼</span>
-            </div>
-            
-            <div class="language-menu" id="languageMenu">
-                <div class="language-option active" onclick="selectLanguage('en', 'English', '🇺🇸')">
-                    <span class="language-flag">🇺🇸</span>
-                    <span class="language-name">English</span>
-                </div>
-                <div class="language-option" onclick="selectLanguage('es', 'Español', '🇪🇸')">
-                    <span class="language-flag">🇪🇸</span>
-                    <span class="language-name">Español</span>
-                </div>
-                <div class="language-option" onclick="selectLanguage('fr', 'Français', '🇫🇷')">
-                    <span class="language-flag">🇫🇷</span>
-                    <span class="language-name">Français</span>
-                </div>
-                <div class="language-option" onclick="selectLanguage('pt', 'Português', '🇧🇷')">
-                    <span class="language-flag">🇧🇷</span>
-                    <span class="language-name">Português</span>
-                </div>
-                <div class="language-option" onclick="selectLanguage('de', 'Deutsch', '🇩🇪')">
-                    <span class="language-flag">🇩🇪</span>
-                    <span class="language-name">Deutsch</span>
-                </div>
             </div>
         </div>
     </nav>
@@ -652,9 +876,9 @@
             
             <div class="cities-grid">
                 <!-- Palm Beach County - Available -->
-                <a href="palm-beach.html" class="city-card available">
+                <a href="#" onclick="showPalmBeachPass(); return false;" class="city-card available">
                     <div class="city-status available">Available Now</div>
-                    <div class="city-image" style="background: linear-gradient(135deg, var(--primary-orange), var(--golden-yellow));">
+                    <div class="city-image" style="background: linear-gradient(135deg, var(--primary-green), var(--yellow-accent));">
                         🏖️
                     </div>
                     <div class="city-info">
@@ -683,7 +907,7 @@
                 <div class="city-card coming-soon">
                     <div class="city-status coming-soon">Coming Soon</div>
                     <div class="coming-soon-badge">COMING SOON</div>
-                    <div class="city-image" style="background: linear-gradient(135deg, var(--deep-blue), var(--light-blue));">
+                    <div class="city-image" style="background: linear-gradient(135deg, var(--dark-green), var(--primary-green));">
                         🎢
                     </div>
                     <div class="city-info">
@@ -712,7 +936,7 @@
                 <div class="city-card coming-soon">
                     <div class="city-status coming-soon">Coming Soon</div>
                     <div class="coming-soon-badge">COMING SOON</div>
-                    <div class="city-image" style="background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));">
+                    <div class="city-image" style="background: linear-gradient(135deg, var(--orange-accent), var(--red-accent));">
                         🏙️
                     </div>
                     <div class="city-info">
@@ -741,7 +965,7 @@
                 <div class="city-card coming-soon">
                     <div class="city-status coming-soon">Coming Soon</div>
                     <div class="coming-soon-badge">COMING SOON</div>
-                    <div class="city-image" style="background: linear-gradient(135deg, var(--golden-yellow), var(--warm-yellow));">
+                    <div class="city-image" style="background: linear-gradient(135deg, var(--yellow-accent), var(--orange-accent));">
                         ⚡
                     </div>
                     <div class="city-info">
@@ -770,7 +994,7 @@
                 <div class="city-card coming-soon">
                     <div class="city-status coming-soon">Coming Soon</div>
                     <div class="coming-soon-badge">COMING SOON</div>
-                    <div class="city-image" style="background: linear-gradient(135deg, var(--deep-blue), var(--primary-orange));">
+                    <div class="city-image" style="background: linear-gradient(135deg, var(--dark-green), var(--primary-green));">
                         🌊
                     </div>
                     <div class="city-info">
@@ -799,7 +1023,7 @@
                 <div class="city-card coming-soon">
                     <div class="city-status coming-soon">Coming Soon</div>
                     <div class="coming-soon-badge">COMING SOON</div>
-                    <div class="city-image" style="background: linear-gradient(135deg, var(--light-blue), var(--deep-blue));">
+                    <div class="city-image" style="background: linear-gradient(135deg, var(--primary-green), var(--dark-green));">
                         ⛵
                     </div>
                     <div class="city-info">
@@ -866,8 +1090,8 @@
     <!-- How It Works -->
     <section class="how-it-works" id="how-it-works">
         <div class="section-header">
-            <h2>How It Works</h2>
-            <p>Get started in just three easy steps</p>
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Get started in just three easy steps</p>
         </div>
         
         <div class="steps-grid">
@@ -905,36 +1129,66 @@
             <div class="footer-section">
                 <h3>Destinations</h3>
                 <ul class="footer-links">
-                    <li><a href="palm-beach.html">Palm Beach County</a></li>
+                    <li><a href="#" onclick="showPalmBeachPass()">Palm Beach County</a></li>
                     <li><a href="#" onclick="showComingSoonAlert()">Orlando (Coming Soon)</a></li>
                     <li><a href="#" onclick="showComingSoonAlert()">Miami-Dade (Coming Soon)</a></li>
                     <li><a href="#" onclick="showComingSoonAlert()">Tampa Bay (Coming Soon)</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Jacksonville (Coming Soon)</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Fort Lauderdale (Coming Soon)</a></li>
                 </ul>
             </div>
             
             <div class="footer-section">
                 <h3>Support</h3>
                 <ul class="footer-links">
-                    <li><a href="#" onclick="showComingSoonAlert()">FAQs</a></li>
-                    <li><a href="#" onclick="showComingSoonAlert()">Contact Us</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Frequently Asked Questions</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Contact Customer Service</a></li>
                     <li><a href="#" onclick="showComingSoonAlert()">Terms & Conditions</a></li>
                     <li><a href="#" onclick="showComingSoonAlert()">Privacy Policy</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Refund Policy</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Accessibility</a></li>
                 </ul>
             </div>
             
             <div class="footer-section">
-                <h3>Connect</h3>
+                <h3>Connect With Us</h3>
                 <ul class="footer-links">
                     <li><a href="#" onclick="showComingSoonAlert()">Facebook</a></li>
                     <li><a href="#" onclick="showComingSoonAlert()">Instagram</a></li>
                     <li><a href="#" onclick="showComingSoonAlert()">Twitter</a></li>
                     <li><a href="#" onclick="showComingSoonAlert()">YouTube</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">TripAdvisor</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Newsletter Signup</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="showComingSoonAlert()">About Florida Pass</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Careers</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Press & Media</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Partner With Us</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Affiliate Program</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Site Map</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Other Florida Regions</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="showComingSoonAlert()">Florida Keys Pass (Coming Soon)</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Naples Pass (Coming Soon)</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Sarasota Pass (Coming Soon)</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">St. Petersburg Pass (Coming Soon)</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Tallahassee Pass (Coming Soon)</a></li>
+                    <li><a href="#" onclick="showComingSoonAlert()">Pensacola Pass (Coming Soon)</a></li>
                 </ul>
             </div>
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2025 Florida Pass. All rights reserved.</p>
+            <p>&copy; 2025 Florida Pass. All rights reserved. | Licensed tourism operator in the State of Florida</p>
         </div>
     </footer>
 
@@ -964,7 +1218,6 @@
             // Show toast notification
             showToast(`Language changed to ${name} ${flag}`, 'success');
             
-            // In a real app, this would trigger translation
             console.log('Language changed to:', code, name);
         }
 
@@ -973,10 +1226,19 @@
             const selector = document.querySelector('.language-selector');
             const menu = document.getElementById('languageMenu');
             
-            if (!selector.contains(e.target)) {
+            if (selector && !selector.contains(e.target)) {
                 menu.classList.remove('active');
             }
         });
+
+        // Show Palm Beach Pass (simulated transition)
+        function showPalmBeachPass() {
+            showToast('🏖️ Redirecting to Palm Beach Pass...', 'success');
+            // In a real app, this would navigate to the Palm Beach Pass page
+            setTimeout(() => {
+                console.log('Navigate to Palm Beach Pass page');
+            }, 1500);
+        }
 
         // Coming soon alert for unavailable features
         function showComingSoonAlert() {
@@ -1022,7 +1284,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('preferred_language');
             if (savedLang) {
-                // Find and activate saved language
                 const langOptions = {
                     'en': { name: 'English', flag: '🇺🇸' },
                     'es': { name: 'Español', flag: '🇪🇸' },
@@ -1058,9 +1319,14 @@
                 card.style.transition = 'all 0.6s ease-out';
                 observer.observe(card);
             });
+
+            // Add entrance animation delay for staggered effect
+            document.querySelectorAll('.city-card').forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
         });
 
-        console.log('🌴 Florida Pass - Multi-city landing page loaded with custom hero images!');
+        console.log('🌴 Florida Pass - Multi-city landing page loaded with correct Palm Beach Pass colors!');
     </script>
 </body>
 </html>
